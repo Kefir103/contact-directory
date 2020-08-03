@@ -1,0 +1,76 @@
+{
+    "name": "pushkarev-fugr-test",
+    "version": "1.0.0",
+    "description": "Тестовое задание для Future Group",
+    "license": "ISC",
+    "author": "Efim Pushkarev <pushkarevev@yandex.ru>",
+    "main": "index.jsx",
+    "scripts": {
+        "build": "npm-run-all styles client:prod",
+        "client:dev": "webpack-dev-server --mode development --devtool inline-source-map --open --hot",
+        "client:prod": "webpack -p",
+        "dev": "npm-run-all -p styles:w client:dev server:dev",
+        "server:dev": "nodemon server.js",
+        "start": "npm run build && node server.js",
+        "styles": "node-sass src/client/styles/styles.scss -o public/",
+        "styles:w": "npm run styles && node-sass src/client/styles/styles.scss -o public/ --watch --recursive",
+        "test": "jest",
+        "test:coverage": "jest --coverage",
+        "test:watch": "jest --watch"
+    },
+    "jest": {
+        "setupFiles": [
+            "<rootDir>/setupTests"
+        ],
+        "snapshotSerializers": [
+            "<rootDir>/node_modules/enzyme-to-json/serializer"
+        ]
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "node-sass": "^4.14.0",
+        "npm-run-all": "^4.1.5",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-redux": "^7.2.0",
+        "redux": "^4.0.5",
+        "redux-devtools-extension": "^2.13.8",
+        "redux-thunk": "^2.3.0",
+        "webpack": "^4.43.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.10.5",
+        "@babel/core": "^7.10.5",
+        "@babel/plugin-proposal-class-properties": "^7.10.4",
+        "@babel/plugin-syntax-jsx": "^7.10.4",
+        "@babel/plugin-transform-react-jsx": "^7.10.4",
+        "@babel/polyfill": "^7.10.4",
+        "@babel/preset-env": "^7.10.4",
+        "@babel/preset-react": "^7.10.4",
+        "@babel/runtime": "^7.10.5",
+        "babel-jest": "^26.1.0",
+        "babel-loader": "^8.1.0",
+        "clean-webpack-plugin": "^3.0.0",
+        "css-loader": "^3.5.3",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.2",
+        "enzyme-to-json": "^3.5.0",
+        "fetch-mock-jest": "^1.3.0",
+        "html-webpack-plugin": "^4.2.0",
+        "jest": "^26.1.0",
+        "node-fetch": "^2.6.0",
+        "nodemon": "^2.0.3",
+        "prettier": "^2.0.5",
+        "prettier-plugin-packagejson": "^2.2.2",
+        "react-test-renderer": "^16.13.1",
+        "redux-mock-store": "^1.5.4",
+        "sass-loader": "^8.0.2",
+        "style-loader": "^1.2.0",
+        "webpack-cli": "^3.3.11",
+        "webpack-dev-server": "^3.10.3"
+    },
+    "engines": {
+        "node": "12.16.1",
+        "npm": "6.13.4"
+    }
+}

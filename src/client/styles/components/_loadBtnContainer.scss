@@ -1,0 +1,19 @@
+.load-btn-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px auto;
+    width: 80%;
+
+    .load-btn {
+        height: 60px;
+        border: 2px solid dimgray;
+        border-radius: 5px;
+        outline: none;
+        background-color: lightgray;
+        font-size: 14pt;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

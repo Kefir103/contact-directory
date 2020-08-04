@@ -1,6 +1,7 @@
-@import './components/table';
-@import './components/tableElement';
-@import './components/tablePanel';
+@import 'components/table/table';
+@import 'components/table/tableElement';
+@import 'components/table/tablePanel';
+@import 'components/loadBtnContainer';
 
 body {
     margin: 0;

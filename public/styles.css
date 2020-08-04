@@ -49,6 +49,21 @@
     .panel .table-cell-button:last-child {
       border-right: 2px solid dimgray; }
 
+.load-btn-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px auto;
+  width: 80%; }
+  .load-btn-container .load-btn {
+    height: 60px;
+    border: 2px solid dimgray;
+    border-radius: 5px;
+    outline: none;
+    background-color: lightgray;
+    font-size: 14pt; }
+    .load-btn-container .load-btn:hover {
+      cursor: pointer; }
+
 body {
   margin: 0;
   padding: 0;

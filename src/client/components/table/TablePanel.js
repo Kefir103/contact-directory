@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setSortingMap } from '../../redux/actions/filterActions';
+import { setData } from '../../redux/actions/dataActions';
 
 const TablePanel = (props) => {
     const tableButtonClickHandle = (event) => {
@@ -15,6 +16,7 @@ const TablePanel = (props) => {
         }
 
         props.actions.setSortingMap(newMap.entries());
+        props.actions.setData(props.elements, newMap);
     };
 
     return (
@@ -66,6 +68,7 @@ const TablePanel = (props) => {
 const mapStateToProps = (state) => {
     return {
         sortingMap: state.filter.sortingMap,
+        elements: state.data.elements,
     };
 };
 
@@ -74,6 +77,7 @@ const mapDispatchToProps = (dispatch) => {
         actions: bindActionCreators(
             {
                 setSortingMap,
+                setData,
             },
             dispatch
         ),

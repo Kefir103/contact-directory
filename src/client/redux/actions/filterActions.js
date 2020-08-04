@@ -14,26 +14,9 @@ export function setCurrentPage(page) {
     };
 }
 
-export function setSortingDirections(directions) {
+export function setSortingMap(entries) {
     return {
-        type: Types.FILTER.SET_SORTING_DIRECTIONS,
-        payload: directions,
-    };
-}
-
-export function setSortingFields(fields) {
-    return {
-        type: Types.FILTER.SET_SORTING_FIELDS,
-        payload: fields,
-    };
-}
-
-export function addSortingField(field) {
-    return {
-        type: Types.FILTER.ADD_SORTING_FIELD,
-        payload: {
-            field: field,
-            direction: 'asc',
-        },
+        type: Types.FILTER.SET_SORTING_MAP,
+        payload: entries,
     };
 }

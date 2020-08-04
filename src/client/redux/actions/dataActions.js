@@ -1,14 +1,11 @@
 import * as Types from './actionTypes';
 import { catchError, changeLoadingStatus } from './appStatusActions';
 
-export function setData(data, sortingFields, sortingDirections) {
+export function setData(data, sortingMap) {
     return {
         type: Types.DATA.SET_DATA,
         payload: {
-            sort: {
-                sortingFields,
-                sortingDirections,
-            },
+            sort: sortingMap,
             data: data,
         },
     };

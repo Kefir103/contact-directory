@@ -1,11 +1,5 @@
 import { filterReducer } from '../../../src/client/redux/reducers/filterReducer';
-import {
-    setSortingFields,
-    setSortingDirections,
-    addSortingField,
-    setCurrentPage,
-    setFilterText,
-} from '../../../src/client/redux/actions/filterActions';
+import {setCurrentPage, setFilterText, setSortingMap} from '../../../src/client/redux/actions/filterActions';
 import { initialState } from '../../../src/client/redux/initialState';
 import configureMockStore from 'redux-mock-store';
 
@@ -16,50 +10,15 @@ describe('filterReducer', () => {
     beforeEach(() => {
         store = mockStore({ ...initialState });
     });
-    test('setSortingDirections should return correct state', () => {
-        const directions = ['asc', 'desc'];
+    test('setSortingMap should return correct state', () => {
+        const entries = [['firstName', 'asc'], ['id', 'desc']];
+        const sortingMap = new Map(entries);
         const expectedState = {
             ...store.getState().filter,
-            sort: { ...store.getState().filter.sort, directions: directions },
+            mapSort: sortingMap
         };
-        expect(filterReducer(store.getState().filter, setSortingDirections(directions))).toEqual(
-            expectedState
-        );
-    });
-    test('setSortingFields should return correct state', () => {
-        const fields = ['id', 'firstName'];
-        const expectedState = {
-            ...store.getState().filter,
-            sort: { ...store.getState().filter.sort, fields: fields },
-        };
-        expect(filterReducer(store.getState().filter, setSortingFields(fields))).toEqual(
-            expectedState
-        );
-    });
-    test('addSortingField should return correct state from adding element which not in array', () => {
-        const field = 'firstName';
-        const expectedState = {
-            ...store.getState().filter,
-            sort: {
-                ...store.getState().filter.sort,
-                fields: [...store.getState().filter.sort.fields, field],
-            },
-        };
-        expect(filterReducer(store.getState().filter, addSortingField(field))).toEqual(
-            expectedState
-        );
-    });
-    test('addSortingField should return correct state from adding element which already in array', () => {
-        const field = 'firstName';
-        const expectedState = {
-            ...store.getState().filter,
-            sort: {
-                ...store.getState().filter.sort,
-                fields: ['firstName'],
-            },
-        };
-        expect(filterReducer(expectedState, addSortingField(field))).toEqual(expectedState);
-    });
+        expect(filterReducer(store.getState().filter, setSortingMap(entries))).toEqual(expectedState);
+    })
     test('setCurrentPage should return correct state', () => {
         const page = 5;
         const expectedState = {

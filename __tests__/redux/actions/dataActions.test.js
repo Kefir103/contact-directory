@@ -25,10 +25,7 @@ describe('dataActions', () => {
         const expectedAction = {
             type: Types.DATA.SET_DATA,
             payload: {
-                sort: {
-                    sortingFields: undefined,
-                    sortingDirections: undefined,
-                },
+                sort: undefined,
                 data: data,
             },
         };
@@ -36,17 +33,18 @@ describe('dataActions', () => {
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
     test('setData should set data correctly with sorting', () => {
+        const sortingMap = new Map([
+            ['firstName', 'asc'],
+            ['id', 'desc'],
+        ]);
         const expectedAction = {
             type: Types.DATA.SET_DATA,
             payload: {
-                sort: {
-                    sortingFields: ['firstName', 'id'],
-                    sortingDirections: ['asc', 'desc'],
-                },
+                sort: sortingMap,
                 data: data,
             },
         };
-        store.dispatch(setData(data, ['firstName', 'id'], ['asc', 'desc']));
+        store.dispatch(setData(data, sortingMap));
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
     test('filterElements should filter elements correctly', () => {
@@ -99,10 +97,7 @@ describe('dataActions', () => {
             {
                 type: Types.DATA.SET_DATA,
                 payload: {
-                    sort: {
-                        sortingFields: undefined,
-                        sortingDirections: undefined,
-                    },
+                    sort: undefined,
                     data: data,
                 },
             },

@@ -13,7 +13,5 @@ export const APP_STATUS = {
 export const FILTER = {
     SET_FILTER_TEXT: 'filter/setFilterText',
     SET_CURRENT_PAGE: 'filter/setCurrentPage',
-    SET_SORTING_DIRECTIONS: 'filter/setSortingDirections',
-    SET_SORTING_FIELDS: 'filter/setSortingFields',
-    ADD_SORTING_FIELD: 'filter/addSortingField',
+    SET_SORTING_MAP: 'filter/setSortingMap',
 };

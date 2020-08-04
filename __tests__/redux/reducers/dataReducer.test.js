@@ -20,6 +20,10 @@ describe('dataReducer', () => {
         expect(dataReducer(store.getState().data, setData(data))).toEqual(expectedState);
     });
     test('setData should return correct state with sorting', () => {
+        const sortingMap = new Map([
+            ['firstName', 'asc'],
+            ['id', 'desc'],
+        ]);
         const expectedArray = [
             {
                 id: 683,
@@ -44,7 +48,7 @@ describe('dataReducer', () => {
             },
         ];
         const expectedState = { ...store.getState().data, elements: expectedArray };
-        expect(dataReducer(store.getState().data, setData(data, ['firstName'], ['asc']))).toEqual(
+        expect(dataReducer(store.getState().data, setData(data, sortingMap))).toEqual(
             expectedState
         );
     });

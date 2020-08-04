@@ -1,9 +1,6 @@
 export const initialState = {
     filter: {
-        sort: {
-            fields: [],
-            directions: [],
-        },
+        mapSort: new Map([]),
         filterText: '',
         currentPage: 1,
     },

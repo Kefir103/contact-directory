@@ -1,0 +1,33 @@
+.panel {
+    height: 50px;
+
+    .table-cell-button {
+        display: flex;
+        align-items: center;
+        border: 2px solid dimgray;
+        border-right: none;
+        padding: 0 5px;
+        outline: none;
+        font-family: -apple-system, Arial, Helvetica, sans-serif;
+        font-size: 14pt;
+        box-sizing: border-box;
+        width: 25%;
+        &.id {
+            width: 5%;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+        &.up-arrow:after {
+            content: '\25B2';
+            margin-left: auto;
+        }
+        &.down-arrow:after {
+            content: '\25BC';
+            margin-left: auto;
+        }
+        &:last-child {
+            border-right: 2px solid dimgray;
+        }
+    }
+}

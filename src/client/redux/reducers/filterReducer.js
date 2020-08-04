@@ -7,7 +7,7 @@ export function filterReducer(state = initialState, action) {
             const newMap = new Map(action.payload);
             return {
                 ...state,
-                mapSort: newMap,
+                sortingMap: newMap,
             };
         }
         case Types.FILTER.SET_CURRENT_PAGE: {

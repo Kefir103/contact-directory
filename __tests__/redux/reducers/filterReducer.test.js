@@ -15,7 +15,7 @@ describe('filterReducer', () => {
         const sortingMap = new Map(entries);
         const expectedState = {
             ...store.getState().filter,
-            mapSort: sortingMap
+            sortingMap: sortingMap
         };
         expect(filterReducer(store.getState().filter, setSortingMap(entries))).toEqual(expectedState);
     })

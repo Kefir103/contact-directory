@@ -1,0 +1,16 @@
+.table-cell {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+    padding: 0 5px;
+    width: 25%;
+    box-sizing: border-box;
+    overflow: hidden;
+    &.id {
+        width: 5%;
+    }
+    &:last-child {
+        border-right: 1px solid darkgray;
+    }
+}

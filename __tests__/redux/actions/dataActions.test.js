@@ -62,11 +62,6 @@ describe('dataActions', () => {
     test('filterElements should filter elements correctly without fields', () => {
         const expectedAction = {
             type: Types.DATA.FILTER_ELEMENTS,
-            payload: {
-                data: data,
-                filterFields: undefined,
-                filterText: undefined,
-            },
         };
         store.dispatch(filterElements(data));
         expect(store.getActions()[0]).toEqual(expectedAction);

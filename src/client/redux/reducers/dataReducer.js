@@ -33,10 +33,10 @@ export function dataReducer(state = initialState, action) {
                     filteredElements: undefined,
                 };
             }
-            let filteredElements;
+            let filteredElements = [...action.payload.data];
             action.payload.filterFields.forEach(
                 (field) =>
-                    (filteredElements = action.payload.data.filter((element) =>
+                    (filteredElements = filteredElements.filter((element) =>
                         element[field]
                             .toString()
                             .toLowerCase()

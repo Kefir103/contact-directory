@@ -78,13 +78,6 @@ describe('dataReducer', () => {
                 email: 'EMarton@placerat.com',
                 phone: '(884)101-9065',
             },
-            {
-                id: 546,
-                firstName: 'Puranjay',
-                lastName: 'Briley',
-                email: 'SCulin@pulvinar.gov',
-                phone: '(176)281-2019',
-            },
         ];
         const expectedState = { ...store.getState().data, filteredElements: expectedArray };
         expect(

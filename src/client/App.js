@@ -7,7 +7,7 @@ const App = (props) => {
     return (
         <>
             <SideMenu />
-            {!props.isLoading ? <Table /> : ''}
+            <Table />
         </>
     );
 };

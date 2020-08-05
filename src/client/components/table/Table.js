@@ -5,22 +5,32 @@ import { loadData, setSelectedElement } from '../../redux/actions/dataActions';
 import { setSortingMap } from '../../redux/actions/filterActions';
 import TablePanel from './TablePanel';
 import TableElement from './TableElement';
+import Loader from '../Loader';
 
 const Table = (props) => {
     const renderTable = (elements, filteredElements) => {
-        if (filteredElements && filteredElements.length) {
-            return [
-                <TablePanel />,
-                ...filteredElements.map((element) => <TableElement element={element} />),
-            ];
-        } else if (filteredElements && !filteredElements.length) {
-            return <p id={'filter-error-message'}>Нет элементов списка, которые соответствуют Вашему запросу</p>;
-        } else if (elements.length) {
-            return [
-                <TablePanel />,
-                ...elements.map((element) => <TableElement element={element} />),
-            ];
+        if (props.isLoading === false) {
+            if (filteredElements && filteredElements.length) {
+                return [
+                    <TablePanel />,
+                    ...filteredElements.map((element) => <TableElement element={element} />),
+                ];
+            } else if (filteredElements && !filteredElements.length) {
+                return (
+                    <p id={'filter-error-message'}>
+                        Нет элементов списка, которые соответствуют Вашему запросу
+                    </p>
+                );
+            } else if (elements.length) {
+                return [
+                    <TablePanel />,
+                    ...elements.map((element) => <TableElement element={element} />),
+                ];
+            }
+        } else if (props.isLoading === true) {
+            return <Loader />;
         }
+        return '';
     };
 
     return <p className={'table'}>{renderTable(props.elements, props.filteredElements)}</p>;

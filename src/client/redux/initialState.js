@@ -11,7 +11,7 @@ export const initialState = {
         filteredElements: undefined,
     },
     appStatus: {
-        isLoading: undefined,
+        isLoading: false,
         error: undefined,
     },
 };

@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Table from './components/table/Table';
-import SideMenu from "./components/sidemenu/SideMenu";
+import SideMenu from './components/sidemenu/SideMenu';
 
 const App = (props) => {
     return (
         <>
             <SideMenu />
-            <Table />
+            <div className={'app-container'}>
+                <Table />
+            </div>
         </>
     );
 };

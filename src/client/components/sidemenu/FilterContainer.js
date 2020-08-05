@@ -49,7 +49,12 @@ const FilterContainer = (props) => {
                     <FontAwesomeIcon icon={faSearch} size={'1x'} />
                 </button>
                 <label>
-                    <input type={'checkbox'} name={'id'} onChange={handleFilterValueChecked} />
+                    <input
+                        type={'checkbox'}
+                        name={'id'}
+                        onChange={handleFilterValueChecked}
+                        disabled={!props.filterText}
+                    />
                     Id
                 </label>
                 <label>
@@ -57,6 +62,7 @@ const FilterContainer = (props) => {
                         type={'checkbox'}
                         name={'firstName'}
                         onChange={handleFilterValueChecked}
+                        disabled={!props.filterText}
                     />
                     First Name
                 </label>
@@ -65,15 +71,26 @@ const FilterContainer = (props) => {
                         type={'checkbox'}
                         name={'lastName'}
                         onChange={handleFilterValueChecked}
+                        disabled={!props.filterText}
                     />
                     Last Name
                 </label>
                 <label>
-                    <input type={'checkbox'} name={'email'} onChange={handleFilterValueChecked} />
+                    <input
+                        type={'checkbox'}
+                        name={'email'}
+                        onChange={handleFilterValueChecked}
+                        disabled={!props.filterText}
+                    />
                     E-Mail
                 </label>
                 <label>
-                    <input type={'checkbox'} name={'phone'} onChange={handleFilterValueChecked} />
+                    <input
+                        type={'checkbox'}
+                        name={'phone'}
+                        onChange={handleFilterValueChecked}
+                        disabled={!props.filterText}
+                    />
                     Phone
                 </label>
             </form>

@@ -57,10 +57,10 @@
   .load-btn-container .load-btn {
     height: 60px;
     border: none;
-    border-bottom: 1px solid dimgray;
+    border-bottom: 2px solid gray;
     outline: none;
-    background-color: lightgray;
-    font-size: 14pt; }
+    background-color: #d5d5d5;
+    font-size: 13pt; }
     .load-btn-container .load-btn:hover {
       cursor: pointer; }
 

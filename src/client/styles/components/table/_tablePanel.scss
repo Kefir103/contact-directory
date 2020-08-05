@@ -4,8 +4,10 @@
     .table-cell-button {
         display: flex;
         align-items: center;
-        border: 2px solid dimgray;
+        border: 1px solid silver;
         border-right: none;
+        background-color: #322fb9;
+        color: floralwhite;
         padding: 0 5px;
         outline: none;
         font-family: -apple-system, Arial, Helvetica, sans-serif;
@@ -26,8 +28,8 @@
             content: '\25BC';
             margin-left: auto;
         }
-        &:last-child {
-            border-right: 2px solid dimgray;
+        &:first-child{
+            border-left: none;
         }
     }
 }

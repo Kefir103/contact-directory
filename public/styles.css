@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   margin: 15px auto;
-  width: 100%; }
+  width: 100%;
+  box-shadow: 0 0 8px 3px silver;
+  background: white; }
   .table .table-row {
     display: flex;
     flex-direction: row;
@@ -28,8 +30,10 @@
   .panel .table-cell-button {
     display: flex;
     align-items: center;
-    border: 2px solid dimgray;
+    border: 1px solid silver;
     border-right: none;
+    background-color: #322fb9;
+    color: floralwhite;
     padding: 0 5px;
     outline: none;
     font-family: -apple-system, Arial, Helvetica, sans-serif;
@@ -46,21 +50,23 @@
     .panel .table-cell-button.down-arrow:after {
       content: '\25BC';
       margin-left: auto; }
-    .panel .table-cell-button:last-child {
-      border-right: 2px solid dimgray; }
+    .panel .table-cell-button:first-child {
+      border-left: none; }
 
 .load-btn-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin: 0; }
+  margin: 15px 0; }
   .load-btn-container .load-btn {
     height: 60px;
+    width: 90%;
+    margin: 5px auto;
     border: none;
-    border-bottom: 2px solid gray;
     outline: none;
-    background-color: #d5d5d5;
-    font-size: 13pt; }
+    background-color: #322fb9;
+    color: white;
+    font-size: 12pt;
+    box-shadow: 0 0 5px 2px silver; }
     .load-btn-container .load-btn:hover {
       cursor: pointer; }
 
@@ -81,6 +87,7 @@ aside {
   align-items: center;
   background: white;
   border-bottom: 1px solid darkgray;
+  border-top: 1px solid darkgray;
   padding: 10px 0; }
   .filter-container p {
     margin: 0 0 5px; }
@@ -131,10 +138,10 @@ aside {
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid dimgray;
+  border: 8px solid #322fb9;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: dimgray transparent transparent transparent; }
+  border-color: #322fb9 transparent transparent transparent; }
 
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s; }
@@ -163,7 +170,7 @@ body {
   padding: 0;
   height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  background: white; }
+  background: whitesmoke; }
 
 #root {
   position: relative;

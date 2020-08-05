@@ -12,6 +12,11 @@ export function setData(data, sortingMap) {
 }
 
 export function filterElements(data, filterText, filterFields) {
+    if (!data || !filterText || !filterFields) {
+        return {
+            type: Types.DATA.FILTER_ELEMENTS
+        }
+    }
     return {
         type: Types.DATA.FILTER_ELEMENTS,
         payload: {

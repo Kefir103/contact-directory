@@ -26,6 +26,12 @@ export function filterReducer(state = initialState, action) {
                 filterText: filterText,
             };
         }
+        case Types.FILTER.SET_FILTER_FIELDS: {
+            return {
+                ...state,
+                filterFields: action.payload,
+            };
+        }
         default:
             return state;
     }

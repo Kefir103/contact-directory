@@ -7,16 +7,22 @@ import TablePanel from './TablePanel';
 import TableElement from './TableElement';
 
 const Table = (props) => {
-    useEffect(() => {}, [props.elements]);
+    useEffect(() => {}, [props.elements, props.filteredElements]);
 
     return (
         <p className={'table'}>
             <TablePanel />
-            {props.elements.length !== 0
-                ? props.elements.map((element) => {
-                      return <TableElement element={element} />;
-                  })
-                : ''}
+            {props.elements.length ? (
+                <>
+                    {props.filteredElements && props.filteredElements.length
+                        ? props.filteredElements.map((element) => (
+                              <TableElement element={element} />
+                          ))
+                        : props.elements.map((element) => <TableElement element={element} />)}
+                </>
+            ) : (
+                ''
+            )}
         </p>
     );
 };

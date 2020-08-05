@@ -27,7 +27,7 @@ export function dataReducer(state = initialState, action) {
             };
         }
         case Types.DATA.FILTER_ELEMENTS: {
-            if (!action.payload.filterText || !action.payload.filterFields) {
+            if (!action.payload) {
                 return {
                     ...state,
                     filteredElements: undefined,

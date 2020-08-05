@@ -14,4 +14,5 @@ export const FILTER = {
     SET_FILTER_TEXT: 'filter/setFilterText',
     SET_CURRENT_PAGE: 'filter/setCurrentPage',
     SET_SORTING_MAP: 'filter/setSortingMap',
+    SET_FILTER_FIELDS: 'filter/setFilterFields',
 };

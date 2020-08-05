@@ -20,3 +20,10 @@ export function setSortingMap(entries) {
         payload: entries,
     };
 }
+
+export function setFilterFields(fields) {
+    return {
+        type: Types.FILTER.SET_FILTER_FIELDS,
+        payload: fields,
+    };
+}

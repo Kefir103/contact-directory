@@ -45,7 +45,7 @@ const FilterContainer = (props) => {
                     value={props.filterText}
                     onChange={handleFilterTextChanged}
                 />
-                <button type={'submit'}>
+                <button type={'submit'} disabled={!(props.filterText && props.filterFields.length)}>
                     <FontAwesomeIcon icon={faSearch} size={'1x'} />
                 </button>
                 <label>

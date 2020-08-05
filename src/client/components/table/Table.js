@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loadData, setSelectedElement } from '../../redux/actions/dataActions';
@@ -7,24 +7,23 @@ import TablePanel from './TablePanel';
 import TableElement from './TableElement';
 
 const Table = (props) => {
-    useEffect(() => {}, [props.elements, props.filteredElements]);
+    const renderTable = (elements, filteredElements) => {
+        if (filteredElements && filteredElements.length) {
+            return [
+                <TablePanel />,
+                ...filteredElements.map((element) => <TableElement element={element} />),
+            ];
+        } else if (filteredElements && !filteredElements.length) {
+            return <p id={'filter-error-message'}>Нет элементов списка, которые соответствуют Вашему запросу</p>;
+        } else if (elements.length) {
+            return [
+                <TablePanel />,
+                ...elements.map((element) => <TableElement element={element} />),
+            ];
+        }
+    };
 
-    return (
-        <p className={'table'}>
-            <TablePanel />
-            {props.elements.length ? (
-                <>
-                    {props.filteredElements && props.filteredElements.length
-                        ? props.filteredElements.map((element) => (
-                              <TableElement element={element} />
-                          ))
-                        : props.elements.map((element) => <TableElement element={element} />)}
-                </>
-            ) : (
-                ''
-            )}
-        </p>
-    );
+    return <p className={'table'}>{renderTable(props.elements, props.filteredElements)}</p>;
 };
 
 const mapStateToProps = (state) => {

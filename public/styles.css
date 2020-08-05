@@ -113,6 +113,10 @@ aside {
       border-bottom-right-radius: 5px;
       cursor: pointer; }
 
+#filter-error-message {
+  text-align: center;
+  font-size: 16pt; }
+
 body {
   margin: 0;
   padding: 0;

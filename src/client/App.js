@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Table from './components/table/Table';
-import LoadBtnContainer from './components/LoadBtnContainer';
+import SideMenu from "./components/sidemenu/SideMenu";
 
 const App = (props) => {
     return (
         <>
-            <LoadBtnContainer />
+            <SideMenu />
             {!props.isLoading ? <Table /> : ''}
         </>
     );

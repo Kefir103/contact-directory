@@ -1,8 +1,8 @@
 .table {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin: 15px auto; }
+  margin: 15px auto;
+  width: calc(90% - 250px); }
   .table .table-row {
     display: flex;
     flex-direction: row;
@@ -51,18 +51,29 @@
 
 .load-btn-container {
   display: flex;
-  justify-content: space-around;
-  margin: 15px auto;
-  width: 80%; }
+  flex-direction: column;
+  width: 100%;
+  margin: 0; }
   .load-btn-container .load-btn {
     height: 60px;
-    border: 2px solid dimgray;
-    border-radius: 5px;
+    border: none;
+    border-bottom: 1px solid dimgray;
+    box-shadow: 0 2px 7px 1px silver;
     outline: none;
     background-color: lightgray;
     font-size: 14pt; }
     .load-btn-container .load-btn:hover {
       cursor: pointer; }
+
+aside {
+  position: sticky;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 250px;
+  box-shadow: 2px 2px 5px 2px silver;
+  background: white; }
 
 body {
   margin: 0;
@@ -70,3 +81,8 @@ body {
   height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   background: white; }
+
+#root {
+  position: relative;
+  display: flex;
+  flex-direction: row; }

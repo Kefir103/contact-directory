@@ -1,7 +1,8 @@
 @import 'components/table/table';
 @import 'components/table/tableElement';
 @import 'components/table/tablePanel';
-@import 'components/loadBtnContainer';
+@import 'components/sideMenu/loadBtnContainer';
+@import 'components/sideMenu/sideMenu';
 
 body {
     margin: 0;
@@ -11,4 +12,10 @@ body {
         'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
     background: white;
+}
+
+#root {
+    position: relative;
+    display: flex;
+    flex-direction: row;
 }

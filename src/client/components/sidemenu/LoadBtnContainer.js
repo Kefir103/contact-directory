@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loadData } from '../redux/actions/dataActions';
+import { loadData } from '../../redux/actions/dataActions';
 
 const LoadBtnContainer = (props) => {
     const urlSmallData =

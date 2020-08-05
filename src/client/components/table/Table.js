@@ -7,7 +7,7 @@ import TablePanel from './TablePanel';
 import TableElement from './TableElement';
 
 const Table = (props) => {
-    useEffect(() => {}, [props.elements.length]);
+    useEffect(() => {}, [props.elements]);
 
     return (
         <p className={'table'}>

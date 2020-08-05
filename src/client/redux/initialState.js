@@ -1,12 +1,6 @@
 export const initialState = {
     filter: {
-        sortingMap: new Map([
-            ['id', 'asc'],
-            ['firstName', 'asc'],
-            ['lastName', 'asc'],
-            ['email', 'asc'],
-            ['phone', 'asc'],
-        ]),
+        sortingMap: new Map([]),
         filterText: '',
         currentPage: 1,
     },

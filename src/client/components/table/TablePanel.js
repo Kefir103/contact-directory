@@ -9,54 +9,55 @@ const TablePanel = (props) => {
         event.preventDefault();
         const newMap = new Map(props.sortingMap);
 
-        if (newMap.get(event.target.value) === 'asc') {
-            newMap.set(event.target.value, 'desc');
-        } else {
+        if (!newMap.has(event.target.value)) {
             newMap.set(event.target.value, 'asc');
+        } else if (newMap.get(event.target.value) === 'asc') {
+            newMap.set(event.target.value, 'desc');
+        } else if (newMap.get(event.target.value) === 'desc') {
+            newMap.delete(event.target.value);
         }
 
         props.actions.setSortingMap(newMap.entries());
         props.actions.setData(props.elements, newMap);
     };
 
+    const getArrow = (field) => {
+        if (!props.sortingMap.has(field)) {
+            return '';
+        } else if (props.sortingMap.get(field) === 'asc') {
+            return 'up-arrow';
+        }
+        return 'down-arrow';
+    };
+
     return (
         <p className={'table-row panel'}>
             <button
-                className={`table-cell-button id ${
-                    props.sortingMap.get('id') === 'asc' ? 'down-arrow' : 'up-arrow'
-                }`}
+                className={`table-cell-button id ${getArrow('id')}`}
                 value={'id'}
                 onClick={tableButtonClickHandle}>
                 Id
             </button>
             <button
-                className={`table-cell-button ${
-                    props.sortingMap.get('firstName') === 'asc' ? 'down-arrow' : 'up-arrow'
-                }`}
+                className={`table-cell-button ${getArrow('firstName')}`}
                 value={'firstName'}
                 onClick={tableButtonClickHandle}>
                 First Name
             </button>
             <button
-                className={`table-cell-button ${
-                    props.sortingMap.get('lastName') === 'asc' ? 'down-arrow' : 'up-arrow'
-                }`}
+                className={`table-cell-button ${getArrow('lastName')}`}
                 value={'lastName'}
                 onClick={tableButtonClickHandle}>
                 Last Name
             </button>
             <button
-                className={`table-cell-button ${
-                    props.sortingMap.get('email') === 'asc' ? 'down-arrow' : 'up-arrow'
-                }`}
+                className={`table-cell-button ${getArrow('email')}`}
                 value={'email'}
                 onClick={tableButtonClickHandle}>
                 Email
             </button>
             <button
-                className={`table-cell-button ${
-                    props.sortingMap.get('phone') === 'asc' ? 'down-arrow' : 'up-arrow'
-                }`}
+                className={`table-cell-button ${getArrow('phone')}`}
                 value={'phone'}
                 onClick={tableButtonClickHandle}>
                 Phone

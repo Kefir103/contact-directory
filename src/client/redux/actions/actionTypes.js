@@ -3,6 +3,12 @@ export const DATA = {
     LOAD_DATA: 'data/loadData',
     SET_SELECTED_ELEMENT: 'data/setSelectedElement',
     FILTER_ELEMENTS: 'data/filterElements',
+    CHANGE_INPUT_ELEMENT_FIELD: 'data/changeInputElementField',
+    CHANGE_VALIDATE_INPUTS: 'data/changeValidateInputs',
+    CHANGE_IS_INPUT_FORM_OPEN: 'data/changeIsInputFormOpen',
+    CHANGE_IS_ADD_BUTTON_DISABLED: 'data/changeIsAddButtonDisabled',
+    REMOVE_INPUT_DATA: 'data/removeInputData',
+    ADD_INPUT_DATA_TO_ARRAY: 'data/addInputDataToArray'
 };
 
 export const APP_STATUS = {

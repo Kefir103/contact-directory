@@ -3,6 +3,12 @@ import {
     setData,
     setSelectedElement,
     filterElements,
+    changeInputElementField,
+    changeValidateInputs,
+    changeIsInputFormOpen,
+    changeIsAddButtonDisabled,
+    removeInputData,
+    addInputDataToArray,
 } from '../../../src/client/redux/actions/dataActions';
 import { initialState } from '../../../src/client/redux/initialState';
 import { data } from '../../../__mocks__/data';
@@ -83,6 +89,103 @@ describe('dataReducer', () => {
         expect(
             dataReducer(store.getState().data, filterElements(data, '1', ['id', 'phone']))
         ).toEqual(expectedState);
+    });
+    test('changeInputElementField should change inputElement field correctly', () => {
+        const changedElement = {
+            id: 5,
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+        };
+        const expectedState = {
+            ...store.getState().data,
+            inputContainer: {
+                ...store.getState().data.inputContainer,
+                inputElement: changedElement,
+            },
+        };
+        expect(dataReducer(store.getState().data, changeInputElementField('id', 5))).toEqual(
+            expectedState
+        );
+    });
+    test('changeValidateInputs should change validInputs field correctly', () => {
+        const changedValidInputs = {
+            id: true,
+            firstName: false,
+            lastName: false,
+            email: false,
+            phone: false,
+        };
+        const expectedState = {
+            ...store.getState().data,
+            inputContainer: {
+                ...store.getState().data.inputContainer,
+                validInputs: changedValidInputs,
+            },
+        };
+        expect(dataReducer(store.getState().data, changeValidateInputs('id', true))).toEqual(
+            expectedState
+        );
+    });
+    test('changeIsFormOpen should return state with correct isFormOpen', () => {
+        const isFormOpen = true;
+        const expectedState = {
+            ...store.getState().data,
+            inputContainer: {
+                ...store.getState().data.inputContainer,
+                isFormOpen: isFormOpen,
+            },
+        };
+        expect(dataReducer(store.getState().data, changeIsInputFormOpen(isFormOpen))).toEqual(
+            expectedState
+        );
+    });
+    test('changeIsAddButtonDisabled should return state with correct isAddButtonDisabled', () => {
+        const isAddButtonDisabled = true;
+        const expectedState = {
+            ...store.getState().data,
+            inputContainer: {
+                ...store.getState().data.inputContainer,
+                isAddButtonDisabled,
+            },
+        };
+        expect(
+            dataReducer(store.getState().data, changeIsAddButtonDisabled(isAddButtonDisabled))
+        ).toEqual(expectedState);
+    });
+    test('removeInputData should return initial inputElement correctly', () => {
+        const initialInputElement = {
+            id: 0,
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+        };
+        const expectedState = {
+            ...store.getState().data,
+            inputContainer: {
+                ...store.getState().data.inputContainer,
+                inputElement: initialInputElement,
+            },
+        };
+        expect(dataReducer(store.getState().data, removeInputData())).toEqual(expectedState);
+    });
+    test('addInputDataToArray should return correct state with unshifted to full data array inputElement', () => {
+        const inputElement = {
+            id: 5,
+            firstName: 'firstName',
+            lastName: 'lastName',
+            email: 'email',
+            phone: 'phone',
+        };
+        const expectedState = {
+            ...store.getState().data,
+            elements: [inputElement, ...store.getState().data.elements],
+        };
+        expect(dataReducer(store.getState().data, addInputDataToArray(inputElement))).toEqual(
+            expectedState
+        );
     });
     test('should return state without changes with undefined action', () => {
         const expectedState = { ...store.getState().data };

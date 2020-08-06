@@ -4,6 +4,12 @@ import {
     filterElements,
     loadData,
     setSelectedElement,
+    changeInputElementField,
+    changeValidateInputs,
+    changeIsInputFormOpen,
+    changeIsAddButtonDisabled,
+    removeInputData,
+    addInputDataToArray,
 } from '../../../src/client/redux/actions/dataActions';
 import { data } from '../../../__mocks__/data';
 import configureMockStore from 'redux-mock-store';
@@ -117,5 +123,65 @@ describe('dataActions', () => {
         return store.dispatch(loadData(url)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
         });
+    });
+    test('changeInputElementField should set correct field in element', () => {
+        const expectedAction = {
+            type: Types.DATA.CHANGE_INPUT_ELEMENT_FIELD,
+            payload: {
+                field: 'field',
+                value: 'value',
+            },
+        };
+        store.dispatch(changeInputElementField('field', 'value'));
+        expect(store.getActions()[0]).toEqual(expectedAction);
+    });
+    test('changeValidateInputs should change validation', () => {
+        const expectedAction = {
+            type: Types.DATA.CHANGE_VALIDATE_INPUTS,
+            payload: {
+                field: 'field',
+                isValid: true,
+            },
+        };
+        store.dispatch(changeValidateInputs('field', true));
+        expect(store.getActions()[0]).toEqual(expectedAction);
+    });
+    test('changeIsInputFormOpen should change open status of input form', () => {
+        const expectedAction = {
+            type: Types.DATA.CHANGE_IS_INPUT_FORM_OPEN,
+            payload: true,
+        };
+        store.dispatch(changeIsInputFormOpen(true));
+        expect(store.getActions()[0]).toEqual(expectedAction);
+    });
+    test('changeIsAddButtonDisabled should change add button disabled status', () => {
+        const expectedAction = {
+            type: Types.DATA.CHANGE_IS_ADD_BUTTON_DISABLED,
+            payload: true,
+        };
+        store.dispatch(changeIsAddButtonDisabled(true));
+        expect(store.getActions()[0]).toEqual(expectedAction);
+    });
+    test('removeInputData should be called', () => {
+        const expectedAction = {
+            type: Types.DATA.REMOVE_INPUT_DATA,
+        };
+        store.dispatch(removeInputData());
+        expect(store.getActions()[0]).toEqual(expectedAction);
+    });
+    test('addInputDataToArray should add inputElement', () => {
+        const inputElement = {
+            id: 5,
+            firstName: 'firstName',
+            lastName: 'lastName',
+            email: 'email',
+            phone: 'phone',
+        };
+        const expectedAction = {
+            type: Types.DATA.ADD_INPUT_DATA_TO_ARRAY,
+            payload: inputElement,
+        };
+        store.dispatch(addInputDataToArray(inputElement));
+        expect(store.getActions()[0]).toEqual(expectedAction);
     });
 });

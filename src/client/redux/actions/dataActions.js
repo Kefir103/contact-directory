@@ -14,8 +14,8 @@ export function setData(data, sortingMap) {
 export function filterElements(data, filterText, filterFields) {
     if (!data || !filterText || !filterFields) {
         return {
-            type: Types.DATA.FILTER_ELEMENTS
-        }
+            type: Types.DATA.FILTER_ELEMENTS,
+        };
     }
     return {
         type: Types.DATA.FILTER_ELEMENTS,
@@ -31,6 +31,53 @@ export function setSelectedElement(element) {
     return {
         type: Types.DATA.SET_SELECTED_ELEMENT,
         payload: element,
+    };
+}
+
+export function changeInputElementField(field, value) {
+    return {
+        type: Types.DATA.CHANGE_INPUT_ELEMENT_FIELD,
+        payload: {
+            field,
+            value,
+        },
+    };
+}
+
+export function changeValidateInputs(field, isValid) {
+    return {
+        type: Types.DATA.CHANGE_VALIDATE_INPUTS,
+        payload: {
+            field,
+            isValid,
+        },
+    };
+}
+
+export function changeIsInputFormOpen(isOpen) {
+    return {
+        type: Types.DATA.CHANGE_IS_INPUT_FORM_OPEN,
+        payload: isOpen,
+    };
+}
+
+export function changeIsAddButtonDisabled(isDisabled) {
+    return {
+        type: Types.DATA.CHANGE_IS_ADD_BUTTON_DISABLED,
+        payload: isDisabled,
+    };
+}
+
+export function removeInputData() {
+    return {
+        type: Types.DATA.REMOVE_INPUT_DATA,
+    };
+}
+
+export function addInputDataToArray(inputElement) {
+    return {
+        type: Types.DATA.ADD_INPUT_DATA_TO_ARRAY,
+        payload: inputElement,
     };
 }
 

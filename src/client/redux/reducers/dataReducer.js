@@ -48,6 +48,68 @@ export function dataReducer(state = initialState, action) {
                 filteredElements: filteredElements,
             };
         }
+        case Types.DATA.CHANGE_INPUT_ELEMENT_FIELD: {
+            const changedInputElement = { ...state.inputContainer.inputElement };
+            changedInputElement[action.payload.field] = action.payload.value;
+            return {
+                ...state,
+                inputContainer: {
+                    ...state.inputContainer,
+                    inputElement: changedInputElement,
+                },
+            };
+        }
+        case Types.DATA.CHANGE_VALIDATE_INPUTS: {
+            const changedValidInputs = { ...state.inputContainer.validInputs };
+            changedValidInputs[action.payload.field] = action.payload.isValid;
+            return {
+                ...state,
+                inputContainer: {
+                    ...state.inputContainer,
+                    validInputs: changedValidInputs,
+                },
+            };
+        }
+        case Types.DATA.CHANGE_IS_INPUT_FORM_OPEN: {
+            return {
+                ...state,
+                inputContainer: {
+                    ...state.inputContainer,
+                    isFormOpen: action.payload,
+                },
+            };
+        }
+        case Types.DATA.CHANGE_IS_ADD_BUTTON_DISABLED: {
+            return {
+                ...state,
+                inputContainer: {
+                    ...state.inputContainer,
+                    isAddButtonDisabled: action.payload,
+                },
+            };
+        }
+        case Types.DATA.REMOVE_INPUT_DATA: {
+            const initialInputElement = {
+                id: 0,
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+            };
+            return {
+                ...state,
+                inputContainer: {
+                    ...state.inputContainer,
+                    inputElement: initialInputElement,
+                },
+            };
+        }
+        case Types.DATA.ADD_INPUT_DATA_TO_ARRAY: {
+            return {
+                ...state,
+                elements: [action.payload, ...state.elements],
+            };
+        }
         default:
             return state;
     }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Table from './components/table/Table';
 import SideMenu from './components/sidemenu/SideMenu';
 import Header from './components/Header';
+import AddEntryComponent from './components/entry/AddEntryComponent';
 
 const App = (props) => {
     return (
@@ -10,6 +11,7 @@ const App = (props) => {
             <Header />
             <SideMenu />
             <div className={'app-container'}>
+                <AddEntryComponent />
                 <Table />
             </div>
         </>

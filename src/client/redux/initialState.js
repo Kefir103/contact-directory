@@ -9,6 +9,24 @@ export const initialState = {
         currentElement: undefined,
         elements: [],
         filteredElements: undefined,
+        inputContainer: {
+            isAddButtonDisabled: false,
+            isFormOpen: false,
+            inputElement: {
+                id: 0,
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+            },
+            validInputs: {
+                id: false,
+                firstName: false,
+                lastName: false,
+                email: false,
+                phone: false,
+            },
+        },
     },
     appStatus: {
         isLoading: false,

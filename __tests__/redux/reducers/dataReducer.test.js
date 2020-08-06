@@ -22,10 +22,6 @@ describe('dataReducer', () => {
     beforeEach(() => {
         store = mockStore({ ...initialState });
     });
-    test('setData should return correct state without sorting', () => {
-        const expectedState = { ...store.getState().data, elements: data };
-        expect(dataReducer(store.getState().data, setData(data))).toEqual(expectedState);
-    });
     test('setData should return correct state with sorting', () => {
         const sortingMap = new Map([
             ['firstName', 'asc'],

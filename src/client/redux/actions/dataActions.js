@@ -84,7 +84,7 @@ export function changeInputAddingStatus(statusText, isError) {
     };
 }
 
-export function loadData(url) {
+export function loadData(url, sortingMap) {
     return (dispatch) => {
         dispatch(changeLoadingStatus(true));
         return fetch(url, {
@@ -92,7 +92,7 @@ export function loadData(url) {
         })
             .then((response) => (response.ok ? response.json() : Promise.reject(response)))
             .then((result) => {
-                dispatch(setData(result));
+                dispatch(setData(result, sortingMap));
                 dispatch(changeLoadingStatus(false));
                 dispatch(catchError(undefined));
             })

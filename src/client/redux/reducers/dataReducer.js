@@ -5,12 +5,6 @@ import { orderBy } from 'lodash';
 export function dataReducer(state = initialState, action) {
     switch (action.type) {
         case Types.DATA.SET_DATA: {
-            if (!action.payload.sort) {
-                return {
-                    ...state,
-                    elements: action.payload.data,
-                };
-            }
             return {
                 ...state,
                 elements: orderBy(

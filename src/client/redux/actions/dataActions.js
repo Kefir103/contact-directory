@@ -74,10 +74,13 @@ export function removeInputData() {
     };
 }
 
-export function addInputDataToArray(inputElement) {
+export function changeInputAddingStatus(statusText, isError) {
     return {
-        type: Types.DATA.ADD_INPUT_DATA_TO_ARRAY,
-        payload: inputElement,
+        type: Types.DATA.CHANGE_INPUT_ADDING_STATUS,
+        payload: {
+            statusText,
+            isError,
+        },
     };
 }
 

@@ -26,6 +26,10 @@ export const initialState = {
                 email: false,
                 phone: false,
             },
+            addingStatus: {
+                addingStatusText: '',
+                isError: false,
+            },
         },
     },
     appStatus: {

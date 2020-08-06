@@ -104,10 +104,17 @@ export function dataReducer(state = initialState, action) {
                 },
             };
         }
-        case Types.DATA.ADD_INPUT_DATA_TO_ARRAY: {
+        case Types.DATA.CHANGE_INPUT_ADDING_STATUS: {
+            const addingStatus = {
+                addingStatusText: action.payload.statusText,
+                isError: action.payload.isError,
+            };
             return {
                 ...state,
-                elements: [action.payload, ...state.elements],
+                inputContainer: {
+                    ...state.inputContainer,
+                    addingStatus,
+                },
             };
         }
         default:

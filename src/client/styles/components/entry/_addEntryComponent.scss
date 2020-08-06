@@ -7,6 +7,18 @@
     .input-form {
         width: 100%;
         box-shadow: 0 0 8px 3px silver;
+
+        .input-error-status {
+            display: block;
+            text-align: center;
+            color: #ff5252;
+        }
+
+        .input-fine-status {
+            display: block;
+            text-align: center;
+            color: black;
+        }
     }
 
     .close-form-button {
@@ -45,7 +57,7 @@
     .inputs {
         display: flex;
         flex-direction: row;
-        margin: 10px 0;
+        margin: 10px 0 0;
         padding: 0;
     }
 

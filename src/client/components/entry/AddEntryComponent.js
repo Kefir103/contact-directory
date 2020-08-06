@@ -7,7 +7,8 @@ import {
     changeIsAddButtonDisabled,
     changeIsInputFormOpen,
     removeInputData,
-    addInputDataToArray,
+    setData,
+    changeInputAddingStatus,
 } from '../../redux/actions/dataActions';
 
 const AddEntryComponent = (props) => {
@@ -37,12 +38,12 @@ const AddEntryComponent = (props) => {
 
     const handleInputIdChange = (event) => {
         validateInput(event, /^(0|[1-9][0-9]*)$/g);
-        props.actions.changeInputElement(event.target.name, Number(event.target.value));
+        props.actions.changeInputElementField(event.target.name, Number(event.target.value));
     };
 
     const handleInputNameChange = (event) => {
         validateInput(event, /^[A-Za-z]+(\s[A-Z]*[a-z]*)*$/);
-        props.actions.changeInputElement(event.target.name, event.target.value);
+        props.actions.changeInputElementField(event.target.name, event.target.value);
     };
 
     const handleInputEmailChange = (event) => {
@@ -50,12 +51,12 @@ const AddEntryComponent = (props) => {
             event,
             /^[A-Za-z0-9]+([_\-]?[A-Za-z0-9]+)*@[A-Za-z0-9]+([_\-]?[A-Za-z0-9]+)*(\.[_\-]?[A-Za-z0-9]+)*(\.[a-z]+)$/
         );
-        props.actions.changeInputElement(event.target.name, event.target.value);
+        props.actions.changeInputElementField(event.target.name, event.target.value);
     };
 
     const handleInputPhoneChange = (event) => {
         validateInput(event, /^\([0-9]{3}\)[0-9]{3}-[0-9]{4}$/);
-        props.actions.changeInputElement(event.target.name, event.target.value);
+        props.actions.changeInputElementField(event.target.name, event.target.value);
     };
 
     const handleAddButtonClick = (event) => {
@@ -64,7 +65,14 @@ const AddEntryComponent = (props) => {
             props.actions.changeIsInputFormOpen(true);
             props.actions.changeIsAddButtonDisabled(true);
         } else {
-            props.actions.addInputDataToArray(props.inputElement);
+            if (
+                props.elements.findIndex((element) => element.id === props.inputElement.id) !== -1
+            ) {
+                props.actions.changeInputAddingStatus('Элемент с таким id уже существует!', true);
+            } else {
+                props.actions.changeInputAddingStatus('Пользователь успешно добавлен!', false);
+                props.actions.setData([props.inputElement, ...props.elements], props.sortingMap);
+            }
             props.actions.changeIsAddButtonDisabled(false);
         }
     };
@@ -73,6 +81,7 @@ const AddEntryComponent = (props) => {
         props.actions.changeIsInputFormOpen(false);
         props.actions.changeIsAddButtonDisabled(false);
         props.actions.removeInputData();
+        props.actions.changeInputAddingStatus('', false);
     };
 
     return (
@@ -166,6 +175,10 @@ const AddEntryComponent = (props) => {
                         />
                     </label>
                 </div>
+                <p
+                    className={props.addingStatus.isError ? 'input-error-status' : 'input-fine-status'}>
+                    {props.addingStatus.addingStatusText}
+                </p>
                 <button className={'close-form-button'} onClick={handleCloseFormButtonClick}>
                     Закрыть окно
                 </button>
@@ -180,7 +193,9 @@ const mapStateToProps = (state) => {
         validInputs: state.data.inputContainer.validInputs,
         isFormOpen: state.data.inputContainer.isFormOpen,
         isAddButtonDisabled: state.data.inputContainer.isAddButtonDisabled,
-        data: state.data.elements,
+        elements: state.data.elements,
+        sortingMap: state.filter.sortingMap,
+        addingStatus: state.data.inputContainer.addingStatus,
     };
 };
 
@@ -188,12 +203,13 @@ const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(
             {
-                changeInputElement: changeInputElementField,
+                changeInputElementField,
                 changeValidateInputs,
                 changeIsAddButtonDisabled,
                 changeIsInputFormOpen,
                 removeInputData,
-                addInputDataToArray,
+                setData,
+                changeInputAddingStatus,
             },
             dispatch
         ),

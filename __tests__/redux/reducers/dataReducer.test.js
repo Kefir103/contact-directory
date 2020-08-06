@@ -9,6 +9,7 @@ import {
     changeIsAddButtonDisabled,
     removeInputData,
     addInputDataToArray,
+    changeInputAddingStatus,
 } from '../../../src/client/redux/actions/dataActions';
 import { initialState } from '../../../src/client/redux/initialState';
 import { data } from '../../../__mocks__/data';
@@ -171,21 +172,21 @@ describe('dataReducer', () => {
         };
         expect(dataReducer(store.getState().data, removeInputData())).toEqual(expectedState);
     });
-    test('addInputDataToArray should return correct state with unshifted to full data array inputElement', () => {
-        const inputElement = {
-            id: 5,
-            firstName: 'firstName',
-            lastName: 'lastName',
-            email: 'email',
-            phone: 'phone',
+    test('changeInputAddingStatus should return correct state with status of adding', () => {
+        const addingStatus = {
+            addingStatusText: 'addingStatusText',
+            isError: false,
         };
         const expectedState = {
             ...store.getState().data,
-            elements: [inputElement, ...store.getState().data.elements],
+            inputContainer: {
+                ...store.getState().data.inputContainer,
+                addingStatus,
+            },
         };
-        expect(dataReducer(store.getState().data, addInputDataToArray(inputElement))).toEqual(
-            expectedState
-        );
+        expect(
+            dataReducer(store.getState().data, changeInputAddingStatus('addingStatusText', false))
+        ).toEqual(expectedState);
     });
     test('should return state without changes with undefined action', () => {
         const expectedState = { ...store.getState().data };

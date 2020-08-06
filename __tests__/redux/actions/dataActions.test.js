@@ -10,6 +10,7 @@ import {
     changeIsAddButtonDisabled,
     removeInputData,
     addInputDataToArray,
+    changeInputAddingStatus,
 } from '../../../src/client/redux/actions/dataActions';
 import { data } from '../../../__mocks__/data';
 import configureMockStore from 'redux-mock-store';
@@ -169,19 +170,15 @@ describe('dataActions', () => {
         store.dispatch(removeInputData());
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
-    test('addInputDataToArray should add inputElement', () => {
-        const inputElement = {
-            id: 5,
-            firstName: 'firstName',
-            lastName: 'lastName',
-            email: 'email',
-            phone: 'phone',
-        };
+    test('changeInputAddingStatus should change addingStatus', () => {
         const expectedAction = {
-            type: Types.DATA.ADD_INPUT_DATA_TO_ARRAY,
-            payload: inputElement,
+            type: Types.DATA.CHANGE_INPUT_ADDING_STATUS,
+            payload: {
+                statusText: 'statusText',
+                isError: false,
+            },
         };
-        store.dispatch(addInputDataToArray(inputElement));
+        store.dispatch(changeInputAddingStatus('statusText', false));
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
 });

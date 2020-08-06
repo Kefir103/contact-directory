@@ -10,6 +10,7 @@ import {
     removeInputData,
     addInputDataToArray,
     changeInputAddingStatus,
+    resetValidInputs,
 } from '../../../src/client/redux/actions/dataActions';
 import { initialState } from '../../../src/client/redux/initialState';
 import { data } from '../../../__mocks__/data';
@@ -167,6 +168,23 @@ describe('dataReducer', () => {
             },
         };
         expect(dataReducer(store.getState().data, removeInputData())).toEqual(expectedState);
+    });
+    test('resetValidInputs should return initial validInputs correctly', () => {
+        const initialValidInputs = {
+            id: false,
+            firstName: false,
+            lastName: false,
+            email: false,
+            phone: false,
+        };
+        const expectedState = {
+            ...store.getState().data,
+            inputContainer: {
+                ...store.getState().data.inputContainer,
+                validInputs: initialValidInputs,
+            },
+        };
+        expect(dataReducer(store.getState().data, resetValidInputs())).toEqual(expectedState);
     });
     test('changeInputAddingStatus should return correct state with status of adding', () => {
         const addingStatus = {

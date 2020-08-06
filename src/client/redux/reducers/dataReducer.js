@@ -98,6 +98,21 @@ export function dataReducer(state = initialState, action) {
                 },
             };
         }
+        case Types.DATA.RESET_VALID_INPUTS: {
+            return {
+                ...state,
+                inputContainer: {
+                    ...state.inputContainer,
+                    validInputs: {
+                        id: false,
+                        firstName: false,
+                        lastName: false,
+                        email: false,
+                        phone: false,
+                    },
+                },
+            };
+        }
         case Types.DATA.CHANGE_INPUT_ADDING_STATUS: {
             const addingStatus = {
                 addingStatusText: action.payload.statusText,

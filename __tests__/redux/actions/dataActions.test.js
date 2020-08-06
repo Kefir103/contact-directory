@@ -10,7 +10,7 @@ import {
     changeIsAddButtonDisabled,
     removeInputData,
     addInputDataToArray,
-    changeInputAddingStatus,
+    changeInputAddingStatus, resetValidInputs,
 } from '../../../src/client/redux/actions/dataActions';
 import { data } from '../../../__mocks__/data';
 import configureMockStore from 'redux-mock-store';
@@ -170,6 +170,13 @@ describe('dataActions', () => {
         store.dispatch(removeInputData());
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
+    test('resetValidInputs should be called', () => {
+        const expectedAction = {
+            type: Types.DATA.RESET_VALID_INPUTS
+        }
+        store.dispatch(resetValidInputs());
+        expect(store.getActions()[0]).toEqual(expectedAction);
+    })
     test('changeInputAddingStatus should change addingStatus', () => {
         const expectedAction = {
             type: Types.DATA.CHANGE_INPUT_ADDING_STATUS,

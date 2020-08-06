@@ -9,6 +9,7 @@ import {
     removeInputData,
     setData,
     changeInputAddingStatus,
+    resetValidInputs,
 } from '../../redux/actions/dataActions';
 
 const AddEntryComponent = (props) => {
@@ -25,14 +26,17 @@ const AddEntryComponent = (props) => {
         const regExp = new RegExp(pattern);
         const fieldName = event.target.name;
 
-        const isValid = !(!regExp.test(event.target.value) && event.target.value);
+        const isValid = regExp.test(event.target.value);
         const nowValidInputs = { ...props.validInputs };
         nowValidInputs[fieldName] = isValid;
 
         props.actions.changeValidateInputs(fieldName, isValid);
         if (areFieldsTrue(nowValidInputs)) {
             props.actions.changeIsAddButtonDisabled(false);
+        } else {
+            props.actions.changeIsAddButtonDisabled(true);
         }
+
         return nowValidInputs[fieldName];
     };
 
@@ -82,13 +86,14 @@ const AddEntryComponent = (props) => {
         props.actions.changeIsAddButtonDisabled(false);
         props.actions.removeInputData();
         props.actions.changeInputAddingStatus('', false);
+        props.actions.resetValidInputs();
     };
 
     return (
         <div className={'add-entry-component'}>
             <button
                 className={'add-button'}
-                disabled={props.isAddButtonDisabled && !areFieldsTrue(props.validInputs)}
+                disabled={props.isAddButtonDisabled}
                 onClick={handleAddButtonClick}>
                 Добавить
             </button>
@@ -176,7 +181,9 @@ const AddEntryComponent = (props) => {
                     </label>
                 </div>
                 <p
-                    className={props.addingStatus.isError ? 'input-error-status' : 'input-fine-status'}>
+                    className={
+                        props.addingStatus.isError ? 'input-error-status' : 'input-fine-status'
+                    }>
                     {props.addingStatus.addingStatusText}
                 </p>
                 <button className={'close-form-button'} onClick={handleCloseFormButtonClick}>
@@ -210,6 +217,7 @@ const mapDispatchToProps = (dispatch) => {
                 removeInputData,
                 setData,
                 changeInputAddingStatus,
+                resetValidInputs,
             },
             dispatch
         ),

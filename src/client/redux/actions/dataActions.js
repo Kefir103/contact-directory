@@ -74,6 +74,12 @@ export function removeInputData() {
     };
 }
 
+export function resetValidInputs() {
+    return {
+        type: Types.DATA.RESET_VALID_INPUTS,
+    };
+}
+
 export function changeInputAddingStatus(statusText, isError) {
     return {
         type: Types.DATA.CHANGE_INPUT_ADDING_STATUS,

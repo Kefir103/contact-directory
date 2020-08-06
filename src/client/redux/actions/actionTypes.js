@@ -8,6 +8,7 @@ export const DATA = {
     CHANGE_IS_INPUT_FORM_OPEN: 'data/changeIsInputFormOpen',
     CHANGE_IS_ADD_BUTTON_DISABLED: 'data/changeIsAddButtonDisabled',
     REMOVE_INPUT_DATA: 'data/removeInputData',
+    RESET_VALID_INPUTS: 'data/resetValidInputs',
     CHANGE_INPUT_ADDING_STATUS: 'data/changeInputAddingStatus'
 };
 

@@ -17,7 +17,24 @@ export function dataReducer(state = initialState, action) {
         case Types.DATA.SET_SELECTED_ELEMENT: {
             return {
                 ...state,
-                currentElement: action.payload,
+                currentElement: {
+                    elementInfo: action.payload.elementInfo,
+                    elementIndex: action.payload.elementIndex,
+                },
+            };
+        }
+        case Types.DATA.CHANGE_ELEMENT_DESCRIPTION: {
+            const changedElement = { ...state.currentElement.elementInfo };
+            changedElement.description = action.payload.description;
+            const changedData = [...state.elements];
+            changedData[action.payload.elementIndex].description = action.payload.description;
+            return {
+                ...state,
+                elements: changedData,
+                currentElement: {
+                    ...state.currentElement,
+                    elementInfo: changedElement,
+                },
             };
         }
         case Types.DATA.FILTER_ELEMENTS: {

@@ -10,7 +10,8 @@ import {
     changeIsAddButtonDisabled,
     removeInputData,
     addInputDataToArray,
-    changeInputAddingStatus, resetValidInputs,
+    changeInputAddingStatus,
+    resetValidInputs, changeElementDescription,
 } from '../../../src/client/redux/actions/dataActions';
 import { data } from '../../../__mocks__/data';
 import configureMockStore from 'redux-mock-store';
@@ -74,18 +75,22 @@ describe('dataActions', () => {
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
     test('setSelectedElement should return selected element', () => {
-        const element = {
+        const elementInfo = {
             id: 115,
             firstName: 'Racquel',
             lastName: 'Herbert',
             email: 'EMarton@placerat.com',
             phone: '(884)101-9065',
         };
+        const elementIndex = 5;
         const expectedAction = {
             type: Types.DATA.SET_SELECTED_ELEMENT,
-            payload: element,
+            payload: {
+                elementInfo,
+                elementIndex,
+            },
         };
-        store.dispatch(setSelectedElement(element));
+        store.dispatch(setSelectedElement(elementInfo, elementIndex));
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
     test('loadData should load data correctly without error', () => {
@@ -172,11 +177,11 @@ describe('dataActions', () => {
     });
     test('resetValidInputs should be called', () => {
         const expectedAction = {
-            type: Types.DATA.RESET_VALID_INPUTS
-        }
+            type: Types.DATA.RESET_VALID_INPUTS,
+        };
         store.dispatch(resetValidInputs());
         expect(store.getActions()[0]).toEqual(expectedAction);
-    })
+    });
     test('changeInputAddingStatus should change addingStatus', () => {
         const expectedAction = {
             type: Types.DATA.CHANGE_INPUT_ADDING_STATUS,
@@ -186,6 +191,17 @@ describe('dataActions', () => {
             },
         };
         store.dispatch(changeInputAddingStatus('statusText', false));
+        expect(store.getActions()[0]).toEqual(expectedAction);
+    });
+    test('changeElementDescription should change description of element and in array', () => {
+        const expectedAction = {
+            type: Types.DATA.CHANGE_ELEMENT_DESCRIPTION,
+            payload: {
+                description: 'description',
+                elementIndex: 1,
+            },
+        };
+        store.dispatch(changeElementDescription('description', 1));
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
 });

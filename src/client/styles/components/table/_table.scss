@@ -5,10 +5,17 @@
     width: 100%;
     box-shadow: 0 0 8px 3px silver;
     background: white;
+
     .table-row {
         display: flex;
         flex-direction: row;
         height: 40px;
         margin: 0;
+        cursor: pointer;
+
+        &.selected-row {
+            background: #716fff;
+            color: white;
+        }
     }
 }

@@ -27,10 +27,23 @@ export function filterElements(data, filterText, filterFields) {
     };
 }
 
-export function setSelectedElement(element) {
+export function setSelectedElement(elementInfo, elementIndex) {
     return {
         type: Types.DATA.SET_SELECTED_ELEMENT,
-        payload: element,
+        payload: {
+            elementInfo,
+            elementIndex
+        },
+    };
+}
+
+export function changeElementDescription(description, elementIndex) {
+    return {
+        type: Types.DATA.CHANGE_ELEMENT_DESCRIPTION,
+        payload: {
+            description,
+            elementIndex,
+        },
     };
 }
 

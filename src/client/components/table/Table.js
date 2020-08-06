@@ -20,11 +20,13 @@ const Table = (props) => {
 
         let elementsArray = [];
         if (props.filteredElements && props.filteredElements.length) {
-            elementsArray = props.filteredElements.map((element) => (
-                <TableElement element={element} />
+            elementsArray = props.filteredElements.map((element, index) => (
+                <TableElement element={element} elementIndex={index} />
             ));
         } else if (props.elements.length) {
-            elementsArray = props.elements.map((element) => <TableElement element={element} />);
+            elementsArray = props.elements.map((element, index) => (
+                <TableElement element={element} elementIndex={index} />
+            ));
         }
 
         return (

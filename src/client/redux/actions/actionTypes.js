@@ -9,7 +9,8 @@ export const DATA = {
     CHANGE_IS_ADD_BUTTON_DISABLED: 'data/changeIsAddButtonDisabled',
     REMOVE_INPUT_DATA: 'data/removeInputData',
     RESET_VALID_INPUTS: 'data/resetValidInputs',
-    CHANGE_INPUT_ADDING_STATUS: 'data/changeInputAddingStatus'
+    CHANGE_INPUT_ADDING_STATUS: 'data/changeInputAddingStatus',
+    CHANGE_ELEMENT_DESCRIPTION: 'data/changeElementDescription',
 };
 
 export const APP_STATUS = {

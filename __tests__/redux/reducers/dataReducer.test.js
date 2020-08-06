@@ -11,6 +11,7 @@ import {
     addInputDataToArray,
     changeInputAddingStatus,
     resetValidInputs,
+    changeElementDescription,
 } from '../../../src/client/redux/actions/dataActions';
 import { initialState } from '../../../src/client/redux/initialState';
 import { data } from '../../../__mocks__/data';
@@ -64,10 +65,20 @@ describe('dataReducer', () => {
             email: 'EMarton@placerat.com',
             phone: '(884)101-9065',
         };
-        const expectedState = { ...store.getState().data, currentElement: selectedElement };
-        expect(dataReducer(store.getState().data, setSelectedElement(selectedElement))).toEqual(
-            expectedState
-        );
+        const selectedElementIndex = 5;
+        const expectedState = {
+            ...store.getState().data,
+            currentElement: {
+                elementInfo: selectedElement,
+                elementIndex: selectedElementIndex,
+            },
+        };
+        expect(
+            dataReducer(
+                store.getState().data,
+                setSelectedElement(selectedElement, selectedElementIndex)
+            )
+        ).toEqual(expectedState);
     });
     test('filterElements should return correct state without filters', () => {
         const expectedState = { ...store.getState().data, filteredElements: undefined };
@@ -200,6 +211,26 @@ describe('dataReducer', () => {
         };
         expect(
             dataReducer(store.getState().data, changeInputAddingStatus('addingStatusText', false))
+        ).toEqual(expectedState);
+    });
+    test('changeElementDescription should return correct data array and current element with changed description', () => {
+        const elements = [{ id: 1, description: 'description' }];
+        const elementInfo = {
+            description: 'description',
+        };
+        const expectedState = {
+            ...store.getState().data,
+            elements: elements,
+            currentElement: {
+                ...store.getState().data.currentElement,
+                elementInfo: elementInfo,
+            },
+        };
+        expect(
+            dataReducer(
+                { ...store.getState().data, elements: [{ id: 1, description: '' }] },
+                changeElementDescription('description', 0)
+            )
         ).toEqual(expectedState);
     });
     test('should return state without changes with undefined action', () => {

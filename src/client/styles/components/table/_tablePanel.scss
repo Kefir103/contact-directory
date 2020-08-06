@@ -1,5 +1,6 @@
-.panel {
+.table-row.panel {
     height: 50px;
+    box-shadow: 0 3px 8px 1px silver;
 
     .table-cell-button {
         display: flex;

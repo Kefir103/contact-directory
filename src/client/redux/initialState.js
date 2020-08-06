@@ -6,7 +6,10 @@ export const initialState = {
         currentPage: 1,
     },
     data: {
-        currentElement: undefined,
+        currentElement: {
+            elementInfo: undefined,
+            elementIndex: -1,
+        },
         elements: [],
         filteredElements: undefined,
         inputContainer: {

@@ -1,0 +1,17 @@
+.entry-info {
+    width: 50%;
+    box-shadow: -2px 0 5px 2px silver;
+    margin-top: 10px;
+    background: white;
+    padding: 10px 15px 0;
+    box-sizing: border-box;
+
+    #textarea-info-description {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        line-height: 1.2em;
+        height: 12em;
+        box-sizing: border-box;
+    }
+}

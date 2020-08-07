@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setSortingMap } from '../../redux/actions/filterActions';
-import { setAppElements } from '../../redux/actions/dataActions';
-import { getAppElements } from '../../functions/dataFunctions';
+import {setAppElements, setPageCount} from '../../redux/actions/dataActions';
+import {getAppElements, getPagesCount} from '../../functions/dataFunctions';
 
 const TablePanel = (props) => {
     const tableButtonClickHandle = (event) => {
@@ -26,7 +26,9 @@ const TablePanel = (props) => {
                   newMap
               )
             : getAppElements(props.fullData, null, newMap);
+        const pageCount = getPagesCount(newArrayOfAppElements);
         props.actions.setAppElements(newArrayOfAppElements);
+        props.actions.setPageCount(pageCount);
     };
 
     const getArrow = (field) => {
@@ -89,6 +91,7 @@ const mapDispatchToProps = (dispatch) => {
             {
                 setSortingMap,
                 setAppElements,
+                setPageCount,
             },
             dispatch
         ),

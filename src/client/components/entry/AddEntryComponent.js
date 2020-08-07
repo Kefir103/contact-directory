@@ -10,9 +10,9 @@ import {
     changeInputAddingStatus,
     resetValidInputs,
     setFullData,
-    setAppElements,
+    setAppElements, setPageCount,
 } from '../../redux/actions/dataActions';
-import { getAppElements } from '../../functions/dataFunctions';
+import {getAppElements, getPagesCount} from '../../functions/dataFunctions';
 
 const AddEntryComponent = (props) => {
     const areFieldsTrue = (object) => {
@@ -83,8 +83,10 @@ const AddEntryComponent = (props) => {
                     props.filter,
                     props.sortingMap
                 );
+                const pageCount = getPagesCount(newArrayOfAppElements);
                 props.actions.setFullData(newArrayOfFullData);
                 props.actions.setAppElements(newArrayOfAppElements);
+                props.actions.setPageCount(pageCount);
             }
             props.actions.changeIsAddButtonDisabled(false);
         }
@@ -233,6 +235,7 @@ const mapDispatchToProps = (dispatch) => {
                 setAppElements,
                 changeInputAddingStatus,
                 resetValidInputs,
+                setPageCount,
             },
             dispatch
         ),

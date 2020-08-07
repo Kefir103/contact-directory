@@ -12,7 +12,7 @@ import {
     resetValidInputs,
     changeElementDescription,
     setCurrentElements,
-    setAppElements,
+    setAppElements, setPageCount,
 } from '../../../src/client/redux/actions/dataActions';
 import { data } from '../../../__mocks__/data';
 import configureMockStore from 'redux-mock-store';
@@ -73,6 +73,14 @@ describe('dataActions', () => {
         store.dispatch(setCurrentElements([{ id: 1 }]));
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
+    test('setPageCount should set pageCount', () => {
+        const expectedAction = {
+            type: Types.DATA.SET_PAGE_COUNT,
+            payload: 5,
+        };
+        store.dispatch(setPageCount(5));
+        expect(store.getActions()[0]).toEqual(expectedAction);
+    })
     test('loadData should load data correctly without error', () => {
         const url =
             'http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D';
@@ -84,6 +92,10 @@ describe('dataActions', () => {
             {
                 type: Types.DATA.SET_FULL_DATA,
                 payload: data,
+            },
+            {
+                type: Types.DATA.SET_PAGE_COUNT,
+                payload: 1,
             },
             { type: Types.APP_STATUS.CHANGE_LOADING_STATUS, payload: false },
             { type: Types.APP_STATUS.CATCH_ERROR, payload: undefined },

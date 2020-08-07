@@ -12,6 +12,7 @@ import {
     changeElementDescription,
     setCurrentElements,
     setAppElements,
+    setPageCount,
 } from '../../../src/client/redux/actions/dataActions';
 import { initialState } from '../../../src/client/redux/initialState';
 import { data } from '../../../__mocks__/data';
@@ -110,6 +111,11 @@ describe('dataReducer', () => {
         expect(dataReducer(store.getState().data, setCurrentElements(currentElements))).toEqual(
             expectedState
         );
+    });
+    test('setPageCount should return correct state', () => {
+        const pageCount = 5;
+        const expectedState = { ...store.getState().data, pageCount: pageCount };
+        expect(dataReducer(store.getState().data, setPageCount(5))).toEqual(expectedState);
     });
     test('changeInputElementField should change inputElement field correctly', () => {
         const changedElement = {
@@ -233,6 +239,7 @@ describe('dataReducer', () => {
             ...store.getState().data,
             fullData: [elementInfo],
             appElements: [elementInfo],
+            currentElements: [elementInfo],
             currentElement: {
                 ...store.getState().data.currentElement,
                 elementInfo: elementInfo,
@@ -244,6 +251,7 @@ describe('dataReducer', () => {
                     ...store.getState().data,
                     fullData: [{ description: '' }],
                     appElements: [{ description: '' }],
+                    currentElements: [{ description: '' }],
                 },
                 changeElementDescription('description', 0)
             )

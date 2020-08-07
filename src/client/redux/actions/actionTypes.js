@@ -2,10 +2,11 @@ export const DATA = {
 
     LOAD_DATA: 'data/loadData',
 
-    SET_FULL_DATA: 'data/setLoadedData',
+    SET_FULL_DATA: 'data/setFullData',
     SET_SELECTED_ELEMENT: 'data/setSelectedElement',
     SET_CURRENT_ELEMENTS: 'data/setCurrentElements',
     SET_APP_ELEMENTS: 'data/setAppElements',
+    SET_PAGE_COUNT: 'data/setPageCount',
 
     CHANGE_INPUT_ELEMENT_FIELD: 'data/changeInputElementField',
     CHANGE_VALIDATE_INPUTS: 'data/changeValidateInputs',

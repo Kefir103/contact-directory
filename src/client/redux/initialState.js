@@ -11,6 +11,7 @@ export const initialState = {
             elementIndex: -1,
         },
         fullData: [],
+        pageCount: 1,
         appElements: [],
         currentElements: [],
         inputContainer: {

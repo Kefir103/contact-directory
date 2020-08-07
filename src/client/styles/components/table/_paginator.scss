@@ -1,0 +1,47 @@
+.paginator {
+    width: 90%;
+    text-align: center;
+    bottom: 0;
+
+    .page-button {
+        width: 35px;
+        height: 35px;
+        margin: 5px 2px;
+        font-size: 12pt;
+        box-sizing: border-box;
+        cursor: pointer;
+        background: #716fff;
+        color: white;
+        border: none;
+        border-radius: 2px;
+        outline: none;
+        transition: all 0.1s linear;
+        opacity: 0.7;
+
+        &.selected {
+            background: #322fb9;
+            opacity: 1;
+            border: 2px solid #322fb9;
+            border-radius: 2px;
+        }
+
+        &.arrow {
+            background: transparent !important;
+            color: #716fff;
+            font-size: 14pt;
+            border: none !important;
+            width: auto;
+            transition: none;
+            &:hover {
+                color: #322fb9;
+            }
+        }
+        &:hover {
+            background: #322fb9;
+        }
+        &:focus {
+            border: 2px solid #322fb9;
+            border-radius: 2px;
+        }
+    }
+}

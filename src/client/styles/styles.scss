@@ -1,14 +1,15 @@
 @import 'components/table/table';
 @import 'components/table/tableElement';
 @import 'components/table/tablePanel';
+@import 'components/table/paginator';
 @import 'components/sideMenu/loadBtnContainer';
 @import 'components/sideMenu/sideMenu';
 @import 'components/sideMenu/filterContainer';
+@import 'components/entry/addEntryComponent';
+@import 'components/entry/entryInfo';
 @import 'components/loader';
 @import 'components/appContainer';
 @import 'components/header';
-@import 'components/entry/addEntryComponent';
-@import 'components/entry/entryInfo';
 
 body {
     margin: 0;

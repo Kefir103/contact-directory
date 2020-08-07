@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { bindActionCreators } from 'redux';
-import { setFilterFields, setFilterText } from '../../redux/actions/filterActions';
-import { setAppElements } from '../../redux/actions/dataActions';
-import { getAppElements } from '../../functions/dataFunctions';
+import { setCurrentPage, setFilterFields, setFilterText } from '../../redux/actions/filterActions';
+import { setAppElements, setPageCount } from '../../redux/actions/dataActions';
+import { getAppElements, getPagesCount } from '../../functions/dataFunctions';
 
 const FilterContainer = (props) => {
     const handleFilterFormSubmit = (event) => {
@@ -16,7 +16,12 @@ const FilterContainer = (props) => {
                 { filterText: props.filterText, filterFields: props.filterFields },
                 props.sortingMap
             );
+            const pageCount = getPagesCount(newAppElements);
             props.actions.setAppElements(newAppElements);
+            props.actions.setPageCount(pageCount);
+            if (props.currentPage > pageCount) {
+                props.actions.setCurrentPage(pageCount);
+            }
         }
     };
 
@@ -25,7 +30,9 @@ const FilterContainer = (props) => {
         props.actions.setFilterText(event.target.value);
         if (!event.target.value) {
             const newAppElements = getAppElements(props.fullData, null, props.sortingMap);
+            const pageCount = getPagesCount(newAppElements);
             props.actions.setAppElements(newAppElements);
+            props.actions.setPageCount(pageCount);
         }
     };
 
@@ -111,6 +118,7 @@ const mapStateToProps = (state) => {
         filterText: state.filter.filterText,
         fullData: state.data.fullData,
         sortingMap: state.filter.sortingMap,
+        currentPage: state.filter.currentPage,
     };
 };
 
@@ -121,6 +129,8 @@ const mapDispatchToProps = (dispatch) => {
                 setFilterFields,
                 setFilterText,
                 setAppElements,
+                setPageCount,
+                setCurrentPage,
             },
             dispatch
         ),

@@ -1,5 +1,6 @@
 import * as Types from './actionTypes';
 import { catchError, changeLoadingStatus } from './appStatusActions';
+import { getPagesCount } from '../../functions/dataFunctions';
 
 export function setFullData(data) {
     return {
@@ -29,6 +30,13 @@ export function setCurrentElements(elements) {
     return {
         type: Types.DATA.SET_CURRENT_ELEMENTS,
         payload: elements,
+    };
+}
+
+export function setPageCount(pageCount) {
+    return {
+        type: Types.DATA.SET_PAGE_COUNT,
+        payload: pageCount,
     };
 }
 
@@ -107,7 +115,9 @@ export function loadData(url) {
         })
             .then((response) => (response.ok ? response.json() : Promise.reject(response)))
             .then((result) => {
+                const pageCount = getPagesCount(result);
                 dispatch(setFullData(result));
+                dispatch(setPageCount(pageCount));
                 dispatch(changeLoadingStatus(false));
                 dispatch(catchError(undefined));
             })

@@ -30,15 +30,26 @@ export function dataReducer(state = initialState, action) {
                 currentElements: action.payload,
             };
         }
+        case Types.DATA.SET_PAGE_COUNT: {
+            return {
+                ...state,
+                pageCount: action.payload,
+            };
+        }
         case Types.DATA.CHANGE_ELEMENT_DESCRIPTION: {
             const fullDataElementIndex = state.fullData.findIndex(
+                (element) => action.payload.elementId === element.id
+            );
+            const appDataElementsIndex = state.appElements.findIndex(
                 (element) => action.payload.elementId === element.id
             );
 
             const changedElement = { ...state.currentElement.elementInfo };
             changedElement.description = action.payload.description;
-            state.appElements[action.payload.elementIndex].description = action.payload.description;
+            state.currentElements[action.payload.elementIndex].description =
+                action.payload.description;
             state.fullData[fullDataElementIndex].description = action.payload.description;
+            state.appElements[appDataElementsIndex].description = action.payload.description;
             return {
                 ...state,
                 currentElement: {

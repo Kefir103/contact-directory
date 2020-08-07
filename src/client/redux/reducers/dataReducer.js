@@ -1,16 +1,21 @@
 import * as Types from '../actions/actionTypes';
 import { initialState } from '../initialState';
-import { orderBy } from 'lodash';
+import * as DataFunctions from '../../functions/dataFunctions';
 
 export function dataReducer(state = initialState, action) {
     switch (action.type) {
         case Types.DATA.SET_DATA: {
             return {
                 ...state,
-                elements: orderBy(
+                elements: action.payload,
+            };
+        }
+        case Types.DATA.SET_SORTED_ELEMENTS: {
+            return {
+                ...state,
+                sortedElements: DataFunctions.getSortedElements(
                     action.payload.data,
-                    Array.from(action.payload.sort.keys()),
-                    Array.from(action.payload.sort.values())
+                    action.payload.sort
                 ),
             };
         }

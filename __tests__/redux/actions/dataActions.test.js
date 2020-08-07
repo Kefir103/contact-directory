@@ -13,7 +13,7 @@ import {
     changeInputAddingStatus,
     resetValidInputs,
     changeElementDescription,
-    setCurrentElements,
+    setCurrentElements, setSortedElements,
 } from '../../../src/client/redux/actions/dataActions';
 import { data } from '../../../__mocks__/data';
 import configureMockStore from 'redux-mock-store';
@@ -32,32 +32,26 @@ describe('dataActions', () => {
     afterEach(() => {
         fetchMock.restore();
     });
-    test('setData should set data correctly without sorting', () => {
+    test('setData should set data correctly', () => {
         const expectedAction = {
             type: Types.DATA.SET_DATA,
-            payload: {
-                sort: undefined,
-                data: data,
-            },
+            payload: data,
         };
         store.dispatch(setData(data));
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
-    test('setData should set data correctly with sorting', () => {
-        const sortingMap = new Map([
-            ['firstName', 'asc'],
-            ['id', 'desc'],
-        ]);
+    test('setSortedElements should return sorted array', () => {
+        const sortingMap = new Map([['firstName', 'asc'], ['lastName', 'desc']]);
         const expectedAction = {
-            type: Types.DATA.SET_DATA,
+            type: Types.DATA.SET_SORTED_ELEMENTS,
             payload: {
-                sort: sortingMap,
                 data: data,
-            },
-        };
-        store.dispatch(setData(data, sortingMap));
+                sort: sortingMap
+            }
+        }
+        store.dispatch(setSortedElements(data, sortingMap));
         expect(store.getActions()[0]).toEqual(expectedAction);
-    });
+    })
     test('filterElements should filter elements correctly', () => {
         const expectedAction = {
             type: Types.DATA.FILTER_ELEMENTS,
@@ -114,10 +108,7 @@ describe('dataActions', () => {
             { type: Types.APP_STATUS.CHANGE_LOADING_STATUS, payload: true },
             {
                 type: Types.DATA.SET_DATA,
-                payload: {
-                    sort: undefined,
-                    data: data,
-                },
+                payload: data,
             },
             { type: Types.APP_STATUS.CHANGE_LOADING_STATUS, payload: false },
             { type: Types.APP_STATUS.CATCH_ERROR, payload: undefined },

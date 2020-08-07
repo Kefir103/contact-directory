@@ -13,6 +13,7 @@ import {
     resetValidInputs,
     changeElementDescription,
     setCurrentElements,
+    setSortedElements,
 } from '../../../src/client/redux/actions/dataActions';
 import { initialState } from '../../../src/client/redux/initialState';
 import { data } from '../../../__mocks__/data';
@@ -25,7 +26,34 @@ describe('dataReducer', () => {
     beforeEach(() => {
         store = mockStore({ ...initialState });
     });
-    test('setData should return correct state with sorting', () => {
+    test('setData should return correct state', () => {
+        const expectedArray = [
+            {
+                id: 115,
+                firstName: 'Racquel',
+                lastName: 'Herbert',
+                email: 'EMarton@placerat.com',
+                phone: '(884)101-9065',
+            },
+            {
+                id: 546,
+                firstName: 'Puranjay',
+                lastName: 'Briley',
+                email: 'SCulin@pulvinar.gov',
+                phone: '(176)281-2019',
+            },
+            {
+                id: 683,
+                firstName: 'Chad',
+                lastName: 'Robichaud',
+                email: 'SDupuy@lacus.ly',
+                phone: '(253)555-8927',
+            },
+        ];
+        const expectedState = { ...store.getState().data, elements: expectedArray };
+        expect(dataReducer(store.getState().data, setData(data))).toEqual(expectedState);
+    });
+    test('setSortedElements should return correct state', () => {
         const sortingMap = new Map([
             ['firstName', 'asc'],
             ['id', 'desc'],
@@ -53,8 +81,8 @@ describe('dataReducer', () => {
                 phone: '(884)101-9065',
             },
         ];
-        const expectedState = { ...store.getState().data, elements: expectedArray };
-        expect(dataReducer(store.getState().data, setData(data, sortingMap))).toEqual(
+        const expectedState = { ...store.getState().data, sortedElements: expectedArray };
+        expect(dataReducer(store.getState().data, setSortedElements(data, sortingMap))).toEqual(
             expectedState
         );
     });

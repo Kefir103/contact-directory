@@ -11,6 +11,7 @@ export const initialState = {
             elementIndex: -1,
         },
         elements: [],
+        sortedElements: [],
         currentElements: [],
         filteredElements: undefined,
         inputContainer: {

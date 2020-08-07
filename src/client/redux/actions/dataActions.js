@@ -1,9 +1,16 @@
 import * as Types from './actionTypes';
 import { catchError, changeLoadingStatus } from './appStatusActions';
 
-export function setData(data, sortingMap) {
+export function setData(data) {
     return {
         type: Types.DATA.SET_DATA,
+        payload: data,
+    };
+}
+
+export function setSortedElements(data, sortingMap) {
+    return {
+        type: Types.DATA.SET_SORTED_ELEMENTS,
         payload: {
             sort: sortingMap,
             data: data,
@@ -110,7 +117,7 @@ export function changeInputAddingStatus(statusText, isError) {
     };
 }
 
-export function loadData(url, sortingMap) {
+export function loadData(url) {
     return (dispatch) => {
         dispatch(changeLoadingStatus(true));
         return fetch(url, {
@@ -118,7 +125,7 @@ export function loadData(url, sortingMap) {
         })
             .then((response) => (response.ok ? response.json() : Promise.reject(response)))
             .then((result) => {
-                dispatch(setData(result, sortingMap));
+                dispatch(setData(result));
                 dispatch(changeLoadingStatus(false));
                 dispatch(catchError(undefined));
             })

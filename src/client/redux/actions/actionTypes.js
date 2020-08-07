@@ -4,6 +4,7 @@ export const DATA = {
     SET_SELECTED_ELEMENT: 'data/setSelectedElement',
     SET_CURRENT_ELEMENTS: 'data/setCurrentElements',
     FILTER_ELEMENTS: 'data/filterElements',
+    SET_SORTED_ELEMENTS: 'data/setSortedElements',
     CHANGE_INPUT_ELEMENT_FIELD: 'data/changeInputElementField',
     CHANGE_VALIDATE_INPUTS: 'data/changeValidateInputs',
     CHANGE_IS_INPUT_FORM_OPEN: 'data/changeIsInputFormOpen',

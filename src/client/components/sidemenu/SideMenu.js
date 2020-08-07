@@ -3,13 +3,19 @@ import LoadBtnContainer from './LoadBtnContainer';
 import { connect } from 'react-redux';
 import FilterContainer from './FilterContainer';
 
-const SideMenu = () => {
+const SideMenu = (props) => {
     return (
         <aside>
             <LoadBtnContainer />
-            <FilterContainer />
+            {props.fullData.length ? <FilterContainer /> : ''}
         </aside>
     );
 };
 
-export default connect()(SideMenu);
+const mapStateToProps = (state) => {
+    return {
+        fullData: state.data.fullData,
+    };
+};
+
+export default connect(mapStateToProps)(SideMenu);

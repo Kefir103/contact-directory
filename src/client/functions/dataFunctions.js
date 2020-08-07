@@ -5,18 +5,15 @@ export const getFilteredElements = (elements, filterText, filterFields) => {
     filterFields.forEach(
         (field) =>
             (filteredElements = filteredElements.filter((element) =>
-                element[field]
-                    .toString()
-                    .toLowerCase()
-                    .includes(filterText.toLowerCase())
+                element[field].toString().toLowerCase().includes(filterText.toLowerCase())
             ))
     );
     return filteredElements;
-}
+};
 
 export const getSortedElements = (elements, sortingMap) => {
     return orderBy(elements, Array.from(sortingMap.keys()), Array.from(sortingMap.values()));
-}
+};
 
 export const getElementsByPage = (elements, page) => {
     const elementsLengthByPage = page * 50;
@@ -26,8 +23,23 @@ export const getElementsByPage = (elements, page) => {
         currentElementsArray.push(elements[i]);
     }
     return currentElementsArray;
-}
+};
 
-export const getPagesCount = elements => {
+export const getPagesCount = (elements) => {
     return Math.ceil(elements.length / 50);
-}
+};
+
+export const getAppElements = (fullData, filter, sortingMap) => {
+    let currentElements = [...fullData];
+    if (filter) {
+        currentElements = getFilteredElements(
+            currentElements,
+            filter.filterText,
+            filter.filterFields
+        );
+    }
+    if (sortingMap.size) {
+        currentElements = getSortedElements(currentElements, sortingMap);
+    }
+    return currentElements;
+};

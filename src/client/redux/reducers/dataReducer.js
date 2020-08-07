@@ -1,22 +1,18 @@
 import * as Types from '../actions/actionTypes';
 import { initialState } from '../initialState';
-import * as DataFunctions from '../../functions/dataFunctions';
 
 export function dataReducer(state = initialState, action) {
     switch (action.type) {
-        case Types.DATA.SET_DATA: {
+        case Types.DATA.SET_FULL_DATA: {
             return {
                 ...state,
-                elements: action.payload,
+                fullData: action.payload,
             };
         }
-        case Types.DATA.SET_SORTED_ELEMENTS: {
+        case Types.DATA.SET_APP_ELEMENTS: {
             return {
                 ...state,
-                sortedElements: DataFunctions.getSortedElements(
-                    action.payload.data,
-                    action.payload.sort
-                ),
+                appElements: action.payload,
             };
         }
         case Types.DATA.SET_SELECTED_ELEMENT: {
@@ -35,37 +31,20 @@ export function dataReducer(state = initialState, action) {
             };
         }
         case Types.DATA.CHANGE_ELEMENT_DESCRIPTION: {
+            const fullDataElementIndex = state.fullData.findIndex(
+                (element) => action.payload.elementId === element.id
+            );
+
             const changedElement = { ...state.currentElement.elementInfo };
             changedElement.description = action.payload.description;
-            state.elements[action.payload.elementIndex].description = action.payload.description;
+            state.appElements[action.payload.elementIndex].description = action.payload.description;
+            state.fullData[fullDataElementIndex].description = action.payload.description;
             return {
                 ...state,
                 currentElement: {
                     ...state.currentElement,
                     elementInfo: changedElement,
                 },
-            };
-        }
-        case Types.DATA.FILTER_ELEMENTS: {
-            if (!action.payload) {
-                return {
-                    ...state,
-                    filteredElements: undefined,
-                };
-            }
-            let filteredElements = [...action.payload.data];
-            action.payload.filterFields.forEach(
-                (field) =>
-                    (filteredElements = filteredElements.filter((element) =>
-                        element[field]
-                            .toString()
-                            .toLowerCase()
-                            .includes(action.payload.filterText.toLowerCase())
-                    ))
-            );
-            return {
-                ...state,
-                filteredElements: filteredElements,
             };
         }
         case Types.DATA.CHANGE_INPUT_ELEMENT_FIELD: {

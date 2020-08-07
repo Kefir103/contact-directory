@@ -7,10 +7,12 @@ import {
     changeIsAddButtonDisabled,
     changeIsInputFormOpen,
     removeInputData,
-    setData,
     changeInputAddingStatus,
     resetValidInputs,
+    setFullData,
+    setAppElements,
 } from '../../redux/actions/dataActions';
+import { getAppElements } from '../../functions/dataFunctions';
 
 const AddEntryComponent = (props) => {
     const areFieldsTrue = (object) => {
@@ -63,25 +65,32 @@ const AddEntryComponent = (props) => {
         props.actions.changeInputElementField(event.target.name, event.target.value);
     };
 
-    const handleAddButtonClick = (event) => {
+    const handleAddButtonClick = () => {
         const isFormOpen = props.isFormOpen;
         if (!isFormOpen) {
             props.actions.changeIsInputFormOpen(true);
             props.actions.changeIsAddButtonDisabled(true);
         } else {
             if (
-                props.elements.findIndex((element) => element.id === props.inputElement.id) !== -1
+                props.fullData.findIndex((element) => element.id === props.inputElement.id) !== -1
             ) {
                 props.actions.changeInputAddingStatus('Элемент с таким id уже существует!', true);
             } else {
                 props.actions.changeInputAddingStatus('Пользователь успешно добавлен!', false);
-                props.actions.setData([props.inputElement, ...props.elements], props.sortingMap);
+                const newArrayOfFullData = [props.inputElement, ...props.fullData];
+                const newArrayOfAppElements = getAppElements(
+                    newArrayOfFullData,
+                    props.filter,
+                    props.sortingMap
+                );
+                props.actions.setFullData(newArrayOfFullData);
+                props.actions.setAppElements(newArrayOfAppElements);
             }
             props.actions.changeIsAddButtonDisabled(false);
         }
     };
 
-    const handleCloseFormButtonClick = (event) => {
+    const handleCloseFormButtonClick = () => {
         props.actions.changeIsInputFormOpen(false);
         props.actions.changeIsAddButtonDisabled(false);
         props.actions.removeInputData();
@@ -200,9 +209,14 @@ const mapStateToProps = (state) => {
         validInputs: state.data.inputContainer.validInputs,
         isFormOpen: state.data.inputContainer.isFormOpen,
         isAddButtonDisabled: state.data.inputContainer.isAddButtonDisabled,
-        elements: state.data.elements,
+        appElements: state.data.appElements,
+        fullData: state.data.fullData,
         sortingMap: state.filter.sortingMap,
         addingStatus: state.data.inputContainer.addingStatus,
+        filter: {
+            filterText: state.filter.filterText,
+            filterFields: state.filter.filterFields,
+        },
     };
 };
 
@@ -215,7 +229,8 @@ const mapDispatchToProps = (dispatch) => {
                 changeIsAddButtonDisabled,
                 changeIsInputFormOpen,
                 removeInputData,
-                setData,
+                setFullData,
+                setAppElements,
                 changeInputAddingStatus,
                 resetValidInputs,
             },

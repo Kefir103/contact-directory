@@ -4,13 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { bindActionCreators } from 'redux';
 import { setFilterFields, setFilterText } from '../../redux/actions/filterActions';
-import { filterElements } from '../../redux/actions/dataActions';
+import { setAppElements } from '../../redux/actions/dataActions';
+import { getAppElements } from '../../functions/dataFunctions';
 
 const FilterContainer = (props) => {
     const handleFilterFormSubmit = (event) => {
         event.preventDefault();
         if (props.filterText) {
-            props.actions.filterElements(props.elements, props.filterText, props.filterFields);
+            const newAppElements = getAppElements(
+                props.fullData,
+                { filterText: props.filterText, filterFields: props.filterFields },
+                props.sortingMap
+            );
+            props.actions.setAppElements(newAppElements);
         }
     };
 
@@ -18,7 +24,8 @@ const FilterContainer = (props) => {
         event.preventDefault();
         props.actions.setFilterText(event.target.value);
         if (!event.target.value) {
-            props.actions.filterElements();
+            const newAppElements = getAppElements(props.fullData, null, props.sortingMap);
+            props.actions.setAppElements(newAppElements);
         }
     };
 
@@ -102,7 +109,8 @@ const mapStateToProps = (state) => {
     return {
         filterFields: state.filter.filterFields,
         filterText: state.filter.filterText,
-        elements: state.data.elements,
+        fullData: state.data.fullData,
+        sortingMap: state.filter.sortingMap,
     };
 };
 
@@ -112,7 +120,7 @@ const mapDispatchToProps = (dispatch) => {
             {
                 setFilterFields,
                 setFilterText,
-                filterElements,
+                setAppElements,
             },
             dispatch
         ),

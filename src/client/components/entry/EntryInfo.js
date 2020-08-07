@@ -5,7 +5,7 @@ import { changeElementDescription } from '../../redux/actions/dataActions';
 
 const EntryInfo = (props) => {
     const handleDescriptionChange = (event) => {
-        props.actions.changeElementDescription(event.target.value, props.elementIndex);
+        props.actions.changeElementDescription(event.target.value, props.elementIndex, props.element.id);
     };
 
     return (
@@ -20,20 +20,24 @@ const EntryInfo = (props) => {
             <textarea
                 id={'textarea-info-description'}
                 onChange={handleDescriptionChange}
-                value={props.element.description}
+                value={props.element.description ? props.element.description : ''}
             />
-            <p>
-                Адрес проживания: <b>{props.element.address.streetAddress}</b>
-            </p>
-            <p>
-                Город: <b>{props.element.address.city}</b>
-            </p>
-            <p>
-                Провинция/штат: <b>{props.element.address.state}</b>
-            </p>
-            <p>
-                Индекс: <b>{props.element.address.zip}</b>
-            </p>
+            {props.element.address
+                ? [
+                      <p>
+                          Адрес проживания: <b>{props.element.address.streetAddress}</b>
+                      </p>,
+                      <p>
+                          Город: <b>{props.element.address.city}</b>
+                      </p>,
+                      <p>
+                          Провинция/штат: <b>{props.element.address.state}</b>
+                      </p>,
+                      <p>
+                          Индекс: <b>{props.element.address.zip}</b>
+                      </p>,
+                  ]
+                : ''}
         </div>
     );
 };

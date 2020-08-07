@@ -3,6 +3,7 @@ import {
     getElementsByPage,
     getFilteredElements,
     getSortedElements,
+    getAppElements,
 } from '../../src/client/functions/dataFunctions';
 import { data } from '../../__mocks__/data';
 
@@ -81,5 +82,83 @@ describe('dataFunctions', () => {
             },
         ];
         expect(getSortedElements(data, sortingMap)).toEqual(expectedArray);
+    });
+    test('getAppElements should return correct appElements with filter and sortingMap', () => {
+        const filter = {
+            filterText: '6',
+            filterFields: ['id'],
+        };
+        const sortingMap = new Map([['id', 'asc']]);
+        const expectedArray = [
+            {
+                id: 546,
+                firstName: 'Puranjay',
+                lastName: 'Briley',
+                email: 'SCulin@pulvinar.gov',
+                phone: '(176)281-2019',
+            },
+            {
+                id: 683,
+                firstName: 'Chad',
+                lastName: 'Robichaud',
+                email: 'SDupuy@lacus.ly',
+                phone: '(253)555-8927',
+            },
+        ];
+        expect(getAppElements(data, filter, sortingMap)).toEqual(expectedArray);
+    });
+    test('getAppElements should return correct appElements with sortingMap and without filter', () => {
+        const sortingMap = new Map([['lastName', 'asc']]);
+        const expectedArray = [
+            {
+                id: 546,
+                firstName: 'Puranjay',
+                lastName: 'Briley',
+                email: 'SCulin@pulvinar.gov',
+                phone: '(176)281-2019',
+            },
+            {
+                id: 115,
+                firstName: 'Racquel',
+                lastName: 'Herbert',
+                email: 'EMarton@placerat.com',
+                phone: '(884)101-9065',
+            },
+            {
+                id: 683,
+                firstName: 'Chad',
+                lastName: 'Robichaud',
+                email: 'SDupuy@lacus.ly',
+                phone: '(253)555-8927',
+            },
+        ];
+        expect(getAppElements(data, null, sortingMap)).toEqual(expectedArray);
+    });
+    test('getAppElements should return initialData without filter and empty sortingMap', () => {
+        const sortingMap = new Map([]);
+        const expectedArray = [
+            {
+                id: 115,
+                firstName: 'Racquel',
+                lastName: 'Herbert',
+                email: 'EMarton@placerat.com',
+                phone: '(884)101-9065',
+            },
+            {
+                id: 546,
+                firstName: 'Puranjay',
+                lastName: 'Briley',
+                email: 'SCulin@pulvinar.gov',
+                phone: '(176)281-2019',
+            },
+            {
+                id: 683,
+                firstName: 'Chad',
+                lastName: 'Robichaud',
+                email: 'SDupuy@lacus.ly',
+                phone: '(253)555-8927',
+            },
+        ];
+        expect(getAppElements(data, null, sortingMap)).toEqual(expectedArray);
     });
 });

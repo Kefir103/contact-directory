@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import TablePanel from './TablePanel';
 import TableElement from './TableElement';
 import Loader from '../Loader';
+import { bindActionCreators } from 'redux';
+import { setAppElements } from '../../redux/actions/dataActions';
 
 const Table = (props) => {
+    useEffect(() => {
+        if (!props.filterText && !props.appElements.length) {
+            props.actions.setAppElements(props.fullData);
+        }
+    }, [props.fullData, props.appElements]);
+
     const renderFilterEmptyMessage = () => {
         return (
             <p id={'filter-empty-message'}>
@@ -14,20 +22,19 @@ const Table = (props) => {
     };
 
     const renderTable = () => {
-        if (props.filteredElements && !props.filteredElements.length) {
+        if (props.filterText && !props.appElements.length) {
             return renderFilterEmptyMessage();
         }
 
         let elementsArray = [];
-        if (props.filteredElements && props.filteredElements.length) {
-            elementsArray = props.filteredElements.map((element, index) => (
-                <TableElement element={element} elementIndex={index} />
-            ));
-        } else if (props.elements.length) {
-            elementsArray = props.elements.map((element, index) => (
-                <TableElement element={element} elementIndex={index} />
-            ));
+        if (props.appElements.length) {
+            elementsArray = [...props.appElements];
+        } else {
+            elementsArray = [...props.fullData];
         }
+        elementsArray = elementsArray.map((element, index) => (
+            <TableElement element={element} elementIndex={index} />
+        ));
 
         return (
             <p className={'table'}>
@@ -40,13 +47,7 @@ const Table = (props) => {
     return (
         <>
             {!props.isLoading ? (
-                <>
-                    {props.elements.length ? (
-                        <>{renderTable(props.elements, props.filteredElements)}</>
-                    ) : (
-                        ''
-                    )}
-                </>
+                <>{props.fullData.length ? <>{renderTable()}</> : ''}</>
             ) : (
                 <Loader />
             )}
@@ -56,10 +57,22 @@ const Table = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        elements: state.data.elements,
-        filteredElements: state.data.filteredElements,
+        appElements: state.data.appElements,
+        fullData: state.data.fullData,
         isLoading: state.appStatus.isLoading,
+        filterText: state.filter.filterText,
     };
 };
 
-export default connect(mapStateToProps)(Table);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: bindActionCreators(
+            {
+                setAppElements,
+            },
+            dispatch
+        ),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

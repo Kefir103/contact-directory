@@ -1,18 +1,21 @@
 export const DATA = {
-    SET_DATA: 'data/setData',
+
     LOAD_DATA: 'data/loadData',
+
+    SET_FULL_DATA: 'data/setLoadedData',
     SET_SELECTED_ELEMENT: 'data/setSelectedElement',
     SET_CURRENT_ELEMENTS: 'data/setCurrentElements',
-    FILTER_ELEMENTS: 'data/filterElements',
-    SET_SORTED_ELEMENTS: 'data/setSortedElements',
+    SET_APP_ELEMENTS: 'data/setAppElements',
+
     CHANGE_INPUT_ELEMENT_FIELD: 'data/changeInputElementField',
     CHANGE_VALIDATE_INPUTS: 'data/changeValidateInputs',
     CHANGE_IS_INPUT_FORM_OPEN: 'data/changeIsInputFormOpen',
     CHANGE_IS_ADD_BUTTON_DISABLED: 'data/changeIsAddButtonDisabled',
-    REMOVE_INPUT_DATA: 'data/removeInputData',
-    RESET_VALID_INPUTS: 'data/resetValidInputs',
     CHANGE_INPUT_ADDING_STATUS: 'data/changeInputAddingStatus',
     CHANGE_ELEMENT_DESCRIPTION: 'data/changeElementDescription',
+
+    REMOVE_INPUT_DATA: 'data/removeInputData',
+    RESET_VALID_INPUTS: 'data/resetValidInputs',
 };
 
 export const APP_STATUS = {

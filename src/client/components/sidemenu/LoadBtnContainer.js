@@ -13,22 +13,16 @@ const LoadBtnContainer = (props) => {
         <p className={'load-btn-container'}>
             <button
                 className={'load-btn'}
-                onClick={() => props.actions.loadData(urlSmallData, props.sortingMap)}>
+                onClick={() => props.actions.loadData(urlSmallData)}>
                 Загрузить малый объем данных
             </button>
             <button
                 className={'load-btn'}
-                onClick={() => props.actions.loadData(urlBigData, props.sortingMap)}>
+                onClick={() => props.actions.loadData(urlBigData)}>
                 Загрузить большой объем данных
             </button>
         </p>
     );
-};
-
-const mapStateToProps = (state) => {
-    return {
-        sortingMap: state.filter.sortingMap,
-    };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -42,4 +36,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoadBtnContainer);
+export default connect(null, mapDispatchToProps)(LoadBtnContainer);

@@ -10,10 +10,9 @@ export const initialState = {
             elementInfo: undefined,
             elementIndex: -1,
         },
-        elements: [],
-        sortedElements: [],
+        fullData: [],
+        appElements: [],
         currentElements: [],
-        filteredElements: undefined,
         inputContainer: {
             isAddButtonDisabled: false,
             isFormOpen: false,

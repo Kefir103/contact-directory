@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setSortingMap } from '../../redux/actions/filterActions';
-import { setData } from '../../redux/actions/dataActions';
+import { setAppElements } from '../../redux/actions/dataActions';
+import { getAppElements } from '../../functions/dataFunctions';
 
 const TablePanel = (props) => {
     const tableButtonClickHandle = (event) => {
@@ -16,9 +17,16 @@ const TablePanel = (props) => {
         } else if (newMap.get(event.target.value) === 'desc') {
             newMap.delete(event.target.value);
         }
-
         props.actions.setSortingMap(newMap.entries());
-        props.actions.setData(props.elements, newMap);
+
+        const newArrayOfAppElements = props.filterText
+            ? getAppElements(
+                  props.fullData,
+                  { filterText: props.filterText, filterFields: props.filterFields },
+                  newMap
+              )
+            : getAppElements(props.fullData, null, newMap);
+        props.actions.setAppElements(newArrayOfAppElements);
     };
 
     const getArrow = (field) => {
@@ -69,7 +77,9 @@ const TablePanel = (props) => {
 const mapStateToProps = (state) => {
     return {
         sortingMap: state.filter.sortingMap,
-        elements: state.data.elements,
+        filterText: state.filter.filterText,
+        filterFields: state.filter.filterFields,
+        fullData: state.data.fullData,
     };
 };
 
@@ -78,7 +88,7 @@ const mapDispatchToProps = (dispatch) => {
         actions: bindActionCreators(
             {
                 setSortingMap,
-                setData,
+                setAppElements,
             },
             dispatch
         ),

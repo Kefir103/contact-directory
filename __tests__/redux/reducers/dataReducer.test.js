@@ -1,19 +1,17 @@
 import { dataReducer } from '../../../src/client/redux/reducers/dataReducer';
 import {
-    setData,
+    setFullData,
     setSelectedElement,
-    filterElements,
     changeInputElementField,
     changeValidateInputs,
     changeIsInputFormOpen,
     changeIsAddButtonDisabled,
     removeInputData,
-    addInputDataToArray,
     changeInputAddingStatus,
     resetValidInputs,
     changeElementDescription,
     setCurrentElements,
-    setSortedElements,
+    setAppElements,
 } from '../../../src/client/redux/actions/dataActions';
 import { initialState } from '../../../src/client/redux/initialState';
 import { data } from '../../../__mocks__/data';
@@ -26,7 +24,7 @@ describe('dataReducer', () => {
     beforeEach(() => {
         store = mockStore({ ...initialState });
     });
-    test('setData should return correct state', () => {
+    test('setFullData should return correct state', () => {
         const expectedArray = [
             {
                 id: 115,
@@ -50,21 +48,17 @@ describe('dataReducer', () => {
                 phone: '(253)555-8927',
             },
         ];
-        const expectedState = { ...store.getState().data, elements: expectedArray };
-        expect(dataReducer(store.getState().data, setData(data))).toEqual(expectedState);
+        const expectedState = { ...store.getState().data, fullData: expectedArray };
+        expect(dataReducer(store.getState().data, setFullData(data))).toEqual(expectedState);
     });
-    test('setSortedElements should return correct state', () => {
-        const sortingMap = new Map([
-            ['firstName', 'asc'],
-            ['id', 'desc'],
-        ]);
+    test('setAppElements should return correct state', () => {
         const expectedArray = [
             {
-                id: 683,
-                firstName: 'Chad',
-                lastName: 'Robichaud',
-                email: 'SDupuy@lacus.ly',
-                phone: '(253)555-8927',
+                id: 115,
+                firstName: 'Racquel',
+                lastName: 'Herbert',
+                email: 'EMarton@placerat.com',
+                phone: '(884)101-9065',
             },
             {
                 id: 546,
@@ -74,17 +68,15 @@ describe('dataReducer', () => {
                 phone: '(176)281-2019',
             },
             {
-                id: 115,
-                firstName: 'Racquel',
-                lastName: 'Herbert',
-                email: 'EMarton@placerat.com',
-                phone: '(884)101-9065',
+                id: 683,
+                firstName: 'Chad',
+                lastName: 'Robichaud',
+                email: 'SDupuy@lacus.ly',
+                phone: '(253)555-8927',
             },
         ];
-        const expectedState = { ...store.getState().data, sortedElements: expectedArray };
-        expect(dataReducer(store.getState().data, setSortedElements(data, sortingMap))).toEqual(
-            expectedState
-        );
+        const expectedState = { ...store.getState().data, appElements: expectedArray };
+        expect(dataReducer(store.getState().data, setAppElements(data))).toEqual(expectedState);
     });
     test('setSelectedElement should return correct state', () => {
         const selectedElement = {
@@ -118,25 +110,6 @@ describe('dataReducer', () => {
         expect(dataReducer(store.getState().data, setCurrentElements(currentElements))).toEqual(
             expectedState
         );
-    });
-    test('filterElements should return correct state without filters', () => {
-        const expectedState = { ...store.getState().data, filteredElements: undefined };
-        expect(dataReducer(store.getState().data, filterElements(data))).toEqual(expectedState);
-    });
-    test('filterElements should return correct state with filters', () => {
-        const expectedArray = [
-            {
-                id: 115,
-                firstName: 'Racquel',
-                lastName: 'Herbert',
-                email: 'EMarton@placerat.com',
-                phone: '(884)101-9065',
-            },
-        ];
-        const expectedState = { ...store.getState().data, filteredElements: expectedArray };
-        expect(
-            dataReducer(store.getState().data, filterElements(data, '1', ['id', 'phone']))
-        ).toEqual(expectedState);
     });
     test('changeInputElementField should change inputElement field correctly', () => {
         const changedElement = {
@@ -258,7 +231,8 @@ describe('dataReducer', () => {
         };
         const expectedState = {
             ...store.getState().data,
-            elements: [elementInfo],
+            fullData: [elementInfo],
+            appElements: [elementInfo],
             currentElement: {
                 ...store.getState().data.currentElement,
                 elementInfo: elementInfo,
@@ -266,7 +240,11 @@ describe('dataReducer', () => {
         };
         expect(
             dataReducer(
-                { ...store.getState().data, elements: [{ description: '' }] },
+                {
+                    ...store.getState().data,
+                    fullData: [{ description: '' }],
+                    appElements: [{ description: '' }],
+                },
                 changeElementDescription('description', 0)
             )
         ).toEqual(expectedState);

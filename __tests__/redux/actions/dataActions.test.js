@@ -1,7 +1,6 @@
 import * as Types from '../../../src/client/redux/actions/actionTypes';
 import {
-    setData,
-    filterElements,
+    setFullData,
     loadData,
     setSelectedElement,
     changeInputElementField,
@@ -9,18 +8,17 @@ import {
     changeIsInputFormOpen,
     changeIsAddButtonDisabled,
     removeInputData,
-    addInputDataToArray,
     changeInputAddingStatus,
     resetValidInputs,
     changeElementDescription,
-    setCurrentElements, setSortedElements,
+    setCurrentElements,
+    setAppElements,
 } from '../../../src/client/redux/actions/dataActions';
 import { data } from '../../../__mocks__/data';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { initialState } from '../../../src/client/redux/initialState';
 import fetchMock from 'fetch-mock-jest';
-import { setCurrentPage } from '../../../src/client/redux/actions/filterActions';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -32,43 +30,20 @@ describe('dataActions', () => {
     afterEach(() => {
         fetchMock.restore();
     });
-    test('setData should set data correctly', () => {
+    test('setFullData should set loaded data correctly', () => {
         const expectedAction = {
-            type: Types.DATA.SET_DATA,
+            type: Types.DATA.SET_FULL_DATA,
             payload: data,
         };
-        store.dispatch(setData(data));
+        store.dispatch(setFullData(data));
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
-    test('setSortedElements should return sorted array', () => {
-        const sortingMap = new Map([['firstName', 'asc'], ['lastName', 'desc']]);
+    test('setAppElements should set app elements correctly', () => {
         const expectedAction = {
-            type: Types.DATA.SET_SORTED_ELEMENTS,
-            payload: {
-                data: data,
-                sort: sortingMap
-            }
-        }
-        store.dispatch(setSortedElements(data, sortingMap));
-        expect(store.getActions()[0]).toEqual(expectedAction);
-    })
-    test('filterElements should filter elements correctly', () => {
-        const expectedAction = {
-            type: Types.DATA.FILTER_ELEMENTS,
-            payload: {
-                data: data,
-                filterFields: ['firstName'],
-                filterText: 'Jane',
-            },
+            type: Types.DATA.SET_APP_ELEMENTS,
+            payload: data,
         };
-        store.dispatch(filterElements(data, 'Jane', ['firstName']));
-        expect(store.getActions()[0]).toEqual(expectedAction);
-    });
-    test('filterElements should filter elements correctly without fields', () => {
-        const expectedAction = {
-            type: Types.DATA.FILTER_ELEMENTS,
-        };
-        store.dispatch(filterElements(data));
+        store.dispatch(setAppElements(data));
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
     test('setSelectedElement should return selected element', () => {
@@ -107,7 +82,7 @@ describe('dataActions', () => {
         const expectedActions = [
             { type: Types.APP_STATUS.CHANGE_LOADING_STATUS, payload: true },
             {
-                type: Types.DATA.SET_DATA,
+                type: Types.DATA.SET_FULL_DATA,
                 payload: data,
             },
             { type: Types.APP_STATUS.CHANGE_LOADING_STATUS, payload: false },

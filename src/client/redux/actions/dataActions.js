@@ -1,36 +1,17 @@
 import * as Types from './actionTypes';
 import { catchError, changeLoadingStatus } from './appStatusActions';
 
-export function setData(data) {
+export function setFullData(data) {
     return {
-        type: Types.DATA.SET_DATA,
+        type: Types.DATA.SET_FULL_DATA,
         payload: data,
     };
 }
 
-export function setSortedElements(data, sortingMap) {
+export function setAppElements(data) {
     return {
-        type: Types.DATA.SET_SORTED_ELEMENTS,
-        payload: {
-            sort: sortingMap,
-            data: data,
-        },
-    };
-}
-
-export function filterElements(data, filterText, filterFields) {
-    if (!data || !filterText || !filterFields) {
-        return {
-            type: Types.DATA.FILTER_ELEMENTS,
-        };
-    }
-    return {
-        type: Types.DATA.FILTER_ELEMENTS,
-        payload: {
-            data,
-            filterText,
-            filterFields,
-        },
+        type: Types.DATA.SET_APP_ELEMENTS,
+        payload: data,
     };
 }
 
@@ -51,12 +32,13 @@ export function setCurrentElements(elements) {
     };
 }
 
-export function changeElementDescription(description, elementIndex) {
+export function changeElementDescription(description, elementIndex, elementId) {
     return {
         type: Types.DATA.CHANGE_ELEMENT_DESCRIPTION,
         payload: {
             description,
             elementIndex,
+            elementId,
         },
     };
 }
@@ -125,7 +107,7 @@ export function loadData(url) {
         })
             .then((response) => (response.ok ? response.json() : Promise.reject(response)))
             .then((result) => {
-                dispatch(setData(result));
+                dispatch(setFullData(result));
                 dispatch(changeLoadingStatus(false));
                 dispatch(catchError(undefined));
             })

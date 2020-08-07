@@ -12,6 +12,7 @@ import {
     changeInputAddingStatus,
     resetValidInputs,
     changeElementDescription,
+    setCurrentElements,
 } from '../../../src/client/redux/actions/dataActions';
 import { initialState } from '../../../src/client/redux/initialState';
 import { data } from '../../../__mocks__/data';
@@ -79,6 +80,16 @@ describe('dataReducer', () => {
                 setSelectedElement(selectedElement, selectedElementIndex)
             )
         ).toEqual(expectedState);
+    });
+    test('setCurrentElements should return correct state', () => {
+        const currentElements = [{ id: 1 }];
+        const expectedState = {
+            ...store.getState().data,
+            currentElements,
+        };
+        expect(dataReducer(store.getState().data, setCurrentElements(currentElements))).toEqual(
+            expectedState
+        );
     });
     test('filterElements should return correct state without filters', () => {
         const expectedState = { ...store.getState().data, filteredElements: undefined };
@@ -219,7 +230,7 @@ describe('dataReducer', () => {
         };
         const expectedState = {
             ...store.getState().data,
-            elements: [ elementInfo ],
+            elements: [elementInfo],
             currentElement: {
                 ...store.getState().data.currentElement,
                 elementInfo: elementInfo,

@@ -2,6 +2,7 @@ export const DATA = {
     SET_DATA: 'data/setData',
     LOAD_DATA: 'data/loadData',
     SET_SELECTED_ELEMENT: 'data/setSelectedElement',
+    SET_CURRENT_ELEMENTS: 'data/setCurrentElements',
     FILTER_ELEMENTS: 'data/filterElements',
     CHANGE_INPUT_ELEMENT_FIELD: 'data/changeInputElementField',
     CHANGE_VALIDATE_INPUTS: 'data/changeValidateInputs',

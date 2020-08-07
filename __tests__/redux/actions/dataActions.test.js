@@ -11,13 +11,16 @@ import {
     removeInputData,
     addInputDataToArray,
     changeInputAddingStatus,
-    resetValidInputs, changeElementDescription,
+    resetValidInputs,
+    changeElementDescription,
+    setCurrentElements,
 } from '../../../src/client/redux/actions/dataActions';
 import { data } from '../../../__mocks__/data';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { initialState } from '../../../src/client/redux/initialState';
 import fetchMock from 'fetch-mock-jest';
+import { setCurrentPage } from '../../../src/client/redux/actions/filterActions';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -91,6 +94,14 @@ describe('dataActions', () => {
             },
         };
         store.dispatch(setSelectedElement(elementInfo, elementIndex));
+        expect(store.getActions()[0]).toEqual(expectedAction);
+    });
+    test('setCurrentElements should return currentElements to show', () => {
+        const expectedAction = {
+            type: Types.DATA.SET_CURRENT_ELEMENTS,
+            payload: [{ id: 1 }],
+        };
+        store.dispatch(setCurrentElements([{ id: 1 }]));
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
     test('loadData should load data correctly without error', () => {

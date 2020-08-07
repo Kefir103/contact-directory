@@ -23,6 +23,12 @@ export function dataReducer(state = initialState, action) {
                 },
             };
         }
+        case Types.DATA.SET_CURRENT_ELEMENTS: {
+            return {
+                ...state,
+                currentElements: action.payload,
+            };
+        }
         case Types.DATA.CHANGE_ELEMENT_DESCRIPTION: {
             const changedElement = { ...state.currentElement.elementInfo };
             changedElement.description = action.payload.description;

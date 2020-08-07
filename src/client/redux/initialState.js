@@ -11,6 +11,7 @@ export const initialState = {
             elementIndex: -1,
         },
         elements: [],
+        currentElements: [],
         filteredElements: undefined,
         inputContainer: {
             isAddButtonDisabled: false,

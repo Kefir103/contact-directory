@@ -32,8 +32,15 @@ export function setSelectedElement(elementInfo, elementIndex) {
         type: Types.DATA.SET_SELECTED_ELEMENT,
         payload: {
             elementInfo,
-            elementIndex
+            elementIndex,
         },
+    };
+}
+
+export function setCurrentElements(elements) {
+    return {
+        type: Types.DATA.SET_CURRENT_ELEMENTS,
+        payload: elements,
     };
 }
 

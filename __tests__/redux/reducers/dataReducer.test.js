@@ -214,13 +214,12 @@ describe('dataReducer', () => {
         ).toEqual(expectedState);
     });
     test('changeElementDescription should return correct data array and current element with changed description', () => {
-        const elements = [{ id: 1, description: 'description' }];
         const elementInfo = {
             description: 'description',
         };
         const expectedState = {
             ...store.getState().data,
-            elements: elements,
+            elements: [ elementInfo ],
             currentElement: {
                 ...store.getState().data.currentElement,
                 elementInfo: elementInfo,
@@ -228,7 +227,7 @@ describe('dataReducer', () => {
         };
         expect(
             dataReducer(
-                { ...store.getState().data, elements: [{ id: 1, description: '' }] },
+                { ...store.getState().data, elements: [{ description: '' }] },
                 changeElementDescription('description', 0)
             )
         ).toEqual(expectedState);

@@ -26,11 +26,9 @@ export function dataReducer(state = initialState, action) {
         case Types.DATA.CHANGE_ELEMENT_DESCRIPTION: {
             const changedElement = { ...state.currentElement.elementInfo };
             changedElement.description = action.payload.description;
-            const changedData = [...state.elements];
-            changedData[action.payload.elementIndex].description = action.payload.description;
+            state.elements[action.payload.elementIndex].description = action.payload.description;
             return {
                 ...state,
-                elements: changedData,
                 currentElement: {
                     ...state.currentElement,
                     elementInfo: changedElement,

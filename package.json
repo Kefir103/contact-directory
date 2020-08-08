@@ -2,6 +2,10 @@
     "name": "pushkarev-fugr-test",
     "version": "1.0.0",
     "description": "Тестовое задание для Future Group",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Kefir103/pushkarev-fugr-test.git"
+    },
     "license": "ISC",
     "author": "Efim Pushkarev <pushkarevev@yandex.ru>",
     "main": "index.jsx",
@@ -11,7 +15,7 @@
         "client:prod": "webpack -p",
         "dev": "npm-run-all -p styles:w client:dev server:dev",
         "server:dev": "nodemon server.js",
-        "start": "npm run build && node server.js",
+        "start": "node server.js",
         "styles": "node-sass src/client/styles/styles.scss -o public/",
         "styles:w": "npm run styles && node-sass src/client/styles/styles.scss -o public/ --watch --recursive",
         "test": "jest",

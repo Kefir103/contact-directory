@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TablePanel /> should render correctly with selected sortingMap with asc and desc values 1`] = `
+<div
+  class="table-row panel"
+>
+  <button
+    class="table-cell-button id up-arrow"
+    value="id"
+  >
+    Id
+  </button>
+  <button
+    class="table-cell-button up-arrow"
+    value="firstName"
+  >
+    First Name
+  </button>
+  <button
+    class="table-cell-button up-arrow"
+    value="lastName"
+  >
+    Last Name
+  </button>
+  <button
+    class="table-cell-button down-arrow"
+    value="email"
+  >
+    Email
+  </button>
+  <button
+    class="table-cell-button down-arrow"
+    value="phone"
+  >
+    Phone
+  </button>
+</div>
+`;
+
+exports[`<TablePanel /> should render correctly without selected sortingMap 1`] = `
+<div
+  class="table-row panel"
+>
+  <button
+    class="table-cell-button id "
+    value="id"
+  >
+    Id
+  </button>
+  <button
+    class="table-cell-button "
+    value="firstName"
+  >
+    First Name
+  </button>
+  <button
+    class="table-cell-button "
+    value="lastName"
+  >
+    Last Name
+  </button>
+  <button
+    class="table-cell-button "
+    value="email"
+  >
+    Email
+  </button>
+  <button
+    class="table-cell-button "
+    value="phone"
+  >
+    Phone
+  </button>
+</div>
+`;

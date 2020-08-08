@@ -1,5 +1,9 @@
-.entry-info {
+.entry-info-container {
     width: 50%;
+    display: flex;
+}
+.entry-info {
+    width: 100%;
     box-shadow: -2px 0 5px 2px silver;
     margin-top: 10px;
     background: white;

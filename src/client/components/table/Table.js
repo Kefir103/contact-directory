@@ -34,13 +34,19 @@ const Table = (props) => {
         }
 
         return [
-            <p className={'table'}>
+            <div className={'table'} key={'table'}>
                 <TablePanel />
                 {props.currentElements.map((element, index) => (
-                    <TableElement element={element} elementIndex={index} />
+                    <TableElement
+                        element={element}
+                        elementIndex={index}
+                        key={`tableElement${index}`}
+                    />
                 ))}
-            </p>,
-            <>{props.pageCount > 1 ? <Paginator /> : ''}</>,
+            </div>,
+            <div className={'paginator-container'} key={'paginatorContainer'}>
+                {props.pageCount > 1 ? <Paginator key={'paginator'} /> : ''}
+            </div>,
         ];
     };
 

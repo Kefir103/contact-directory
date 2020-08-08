@@ -5,12 +5,16 @@ import { changeElementDescription } from '../../redux/actions/dataActions';
 
 const EntryInfo = (props) => {
     const handleDescriptionChange = (event) => {
-        props.actions.changeElementDescription(event.target.value, props.elementIndex, props.element.id);
+        props.actions.changeElementDescription(
+            event.target.value,
+            props.elementIndex,
+            props.element.id
+        );
     };
 
     return (
-        <div className={'entry-info'}>
-            <p>
+        <div className={'entry-info'} key={`entryInfo-for-${props.element.id}`}>
+            <p key={`${props.element.firstName}-${props.element.lastName}`}>
                 Выбран пользователь:{' '}
                 <b>
                     {props.element.firstName} {props.element.lastName}
@@ -24,16 +28,16 @@ const EntryInfo = (props) => {
             />
             {props.element.address
                 ? [
-                      <p>
+                      <p key={`${props.element.address.streetAddress}`}>
                           Адрес проживания: <b>{props.element.address.streetAddress}</b>
                       </p>,
-                      <p>
+                      <p key={`${props.element.address.city}`}>
                           Город: <b>{props.element.address.city}</b>
                       </p>,
-                      <p>
+                      <p key={`${props.element.address.state}`}>
                           Провинция/штат: <b>{props.element.address.state}</b>
                       </p>,
-                      <p>
+                      <p key={`${props.element.address.zip}`}>
                           Индекс: <b>{props.element.address.zip}</b>
                       </p>,
                   ]

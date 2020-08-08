@@ -41,7 +41,7 @@ const TablePanel = (props) => {
     };
 
     return (
-        <p className={'table-row panel'}>
+        <div className={'table-row panel'}>
             <button
                 className={`table-cell-button id ${getArrow('id')}`}
                 value={'id'}
@@ -72,7 +72,7 @@ const TablePanel = (props) => {
                 onClick={tableButtonClickHandle}>
                 Phone
             </button>
-        </p>
+        </div>
     );
 };
 

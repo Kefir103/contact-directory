@@ -58,8 +58,10 @@
     .table-row.panel .table-cell-button:first-child {
       border-left: none; }
 
+.paginator-container {
+  display: flex; }
+
 .paginator {
-  width: 90%;
   text-align: center;
   bottom: 0; }
   .paginator .page-button {
@@ -238,8 +240,12 @@ aside {
         .add-entry-component .label-input input[type='text'].error-input:active, .add-entry-component .label-input input[type='text'].error-input:focus {
           box-shadow: 0 0 5px 1px silver; }
 
-.entry-info {
+.entry-info-container {
   width: 50%;
+  display: flex; }
+
+.entry-info {
+  width: 100%;
   box-shadow: -2px 0 5px 2px silver;
   margin-top: 10px;
   background: white;

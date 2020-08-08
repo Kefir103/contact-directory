@@ -16,7 +16,7 @@ const TableElement = (props) => {
     };
 
     return (
-        <p
+        <div
             className={`table-row${isRowIsCurrentElement()}`}
             onClick={() => handleElementRowClick()}>
             <div className={'table-cell id'}>{props.element.id}</div>
@@ -24,7 +24,7 @@ const TableElement = (props) => {
             <div className={'table-cell'}>{props.element.lastName}</div>
             <div className={'table-cell'}>{props.element.email}</div>
             <div className={'table-cell'}>{props.element.phone}</div>
-        </p>
+        </div>
     );
 };
 

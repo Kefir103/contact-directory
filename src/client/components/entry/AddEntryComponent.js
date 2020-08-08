@@ -101,7 +101,7 @@ const AddEntryComponent = (props) => {
     };
 
     return (
-        <div className={'add-entry-component'}>
+        <div className={'add-entry-component'} key={'addEntryComponent'}>
             <button
                 className={'add-button'}
                 disabled={props.isAddButtonDisabled}

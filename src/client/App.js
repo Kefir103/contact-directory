@@ -17,9 +17,11 @@ const App = (props) => {
                 <div className={'app-container'}>
                     {!props.isLoading ? (
                         [
-                            <AddEntryComponent />,
-                            <Table />,
-                            <>{props.currentElement.elementInfo ? <EntryInfo /> : ''}</>,
+                            <AddEntryComponent key={'addEntryComponent'} />,
+                            <Table key={'table'} />,
+                            <div className={'entry-info-container'} key={'entryInfoContainer'}>
+                                {props.currentElement.elementInfo ? <EntryInfo /> : ''}
+                            </div>,
                         ]
                     ) : (
                         <Loader />

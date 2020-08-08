@@ -10,7 +10,7 @@ const LoadBtnContainer = (props) => {
         'http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}';
 
     return (
-        <p className={'load-btn-container'}>
+        <div className={'load-btn-container'}>
             <button
                 className={'load-btn'}
                 onClick={() => props.actions.loadData(urlSmallData, props.sortingMap)}>
@@ -21,7 +21,7 @@ const LoadBtnContainer = (props) => {
                 onClick={() => props.actions.loadData(urlBigData, props.sortingMap)}>
                 Загрузить большой объем данных
             </button>
-        </p>
+        </div>
     );
 };
 

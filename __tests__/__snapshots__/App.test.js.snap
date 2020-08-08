@@ -27,8 +27,16 @@ exports[`<App /> should render correctly without isLoading and elementInfo 1`] =
   <div
     className="app-container"
   >
-    <Connect(AddEntryComponent) />
-    <Connect(Table) />
+    <Connect(AddEntryComponent)
+      key="addEntryComponent"
+    />
+    <Connect(Table)
+      key="table"
+    />
+    <div
+      className="entry-info-container"
+      key="entryInfoContainer"
+    />
   </div>
 </Fragment>
 `;
@@ -40,9 +48,18 @@ exports[`<App /> should render correctly without isLoading and with elementInfo 
   <div
     className="app-container"
   >
-    <Connect(AddEntryComponent) />
-    <Connect(Table) />
-    <Connect(EntryInfo) />
+    <Connect(AddEntryComponent)
+      key="addEntryComponent"
+    />
+    <Connect(Table)
+      key="table"
+    />
+    <div
+      className="entry-info-container"
+      key="entryInfoContainer"
+    >
+      <Connect(EntryInfo) />
+    </div>
   </div>
 </Fragment>
 `;

@@ -28,7 +28,8 @@ const Paginator = (props) => {
                     <button
                         className={`page-button ${isCurrentPage(currentPage, i)}`}
                         onClick={handlePageButtonClick}
-                        value={i}>
+                        value={i}
+                        key={`pageBtn${i}`}>
                         {i}
                     </button>
                 );

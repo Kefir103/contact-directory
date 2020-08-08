@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoadBtnContainer /> should render correctly 1`] = `
+<div
+  className="load-btn-container"
+>
+  <button
+    className="load-btn"
+    onClick={[Function]}
+  >
+    Загрузить малый объем данных
+  </button>
+  <button
+    className="load-btn"
+    onClick={[Function]}
+  >
+    Загрузить большой объем данных
+  </button>
+</div>
+`;

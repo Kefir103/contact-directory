@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SideMenu /> should render correctly with empty fullData 1`] = `
+<aside>
+  <Connect(LoadBtnContainer) />
+</aside>
+`;
+
+exports[`<SideMenu /> should render correctly with filled fullData 1`] = `
+<aside>
+  <Connect(LoadBtnContainer) />
+  <Connect(FilterContainer) />
+</aside>
+`;

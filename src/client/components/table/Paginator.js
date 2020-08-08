@@ -56,7 +56,7 @@ const Paginator = (props) => {
                 className={'page-button arrow'}
                 onClick={handleLastPageButtonClick}
                 style={
-                    props.pageCount - props.currentPage > 2
+                    props.pageCount - props.currentPage > 2 && props.pageCount > 5
                         ? { visibility: 'visible' }
                         : { visibility: 'hidden' }
                 }>

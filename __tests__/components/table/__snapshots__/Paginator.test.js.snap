@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Paginator /> should render correctly at the end of paginating 1`] = `
+<div
+  className="paginator"
+>
+  <button
+    className="page-button arrow"
+    onClick={[Function]}
+    style={
+      Object {
+        "visibility": "visible",
+      }
+    }
+  >
+    &lt;&lt;
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn8"
+    onClick={[Function]}
+    value={8}
+  >
+    8
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn9"
+    onClick={[Function]}
+    value={9}
+  >
+    9
+  </button>
+  <button
+    className="page-button selected"
+    key="pageBtn10"
+    onClick={[Function]}
+    value={10}
+  >
+    10
+  </button>
+  <button
+    className="page-button arrow"
+    onClick={[Function]}
+    style={
+      Object {
+        "visibility": "hidden",
+      }
+    }
+  >
+    &gt;&gt;
+  </button>
+</div>
+`;
+
+exports[`<Paginator /> should render correctly at the start of paginating 1`] = `
+<div
+  className="paginator"
+>
+  <button
+    className="page-button arrow"
+    onClick={[Function]}
+    style={
+      Object {
+        "visibility": "hidden",
+      }
+    }
+  >
+    &lt;&lt;
+  </button>
+  <button
+    className="page-button selected"
+    key="pageBtn1"
+    onClick={[Function]}
+    value={1}
+  >
+    1
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn2"
+    onClick={[Function]}
+    value={2}
+  >
+    2
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn3"
+    onClick={[Function]}
+    value={3}
+  >
+    3
+  </button>
+  <button
+    className="page-button arrow"
+    onClick={[Function]}
+    style={
+      Object {
+        "visibility": "visible",
+      }
+    }
+  >
+    &gt;&gt;
+  </button>
+</div>
+`;
+
+exports[`<Paginator /> should render correctly in the middle of paginating 1`] = `
+<div
+  className="paginator"
+>
+  <button
+    className="page-button arrow"
+    onClick={[Function]}
+    style={
+      Object {
+        "visibility": "visible",
+      }
+    }
+  >
+    &lt;&lt;
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn3"
+    onClick={[Function]}
+    value={3}
+  >
+    3
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn4"
+    onClick={[Function]}
+    value={4}
+  >
+    4
+  </button>
+  <button
+    className="page-button selected"
+    key="pageBtn5"
+    onClick={[Function]}
+    value={5}
+  >
+    5
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn6"
+    onClick={[Function]}
+    value={6}
+  >
+    6
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn7"
+    onClick={[Function]}
+    value={7}
+  >
+    7
+  </button>
+  <button
+    className="page-button arrow"
+    onClick={[Function]}
+    style={
+      Object {
+        "visibility": "visible",
+      }
+    }
+  >
+    &gt;&gt;
+  </button>
+</div>
+`;
+
+exports[`<Paginator /> should render correctly in the middle of paginating but with pageCount = 5 1`] = `
+<div
+  className="paginator"
+>
+  <button
+    className="page-button arrow"
+    onClick={[Function]}
+    style={
+      Object {
+        "visibility": "hidden",
+      }
+    }
+  >
+    &lt;&lt;
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn1"
+    onClick={[Function]}
+    value={1}
+  >
+    1
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn2"
+    onClick={[Function]}
+    value={2}
+  >
+    2
+  </button>
+  <button
+    className="page-button selected"
+    key="pageBtn3"
+    onClick={[Function]}
+    value={3}
+  >
+    3
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn4"
+    onClick={[Function]}
+    value={4}
+  >
+    4
+  </button>
+  <button
+    className="page-button "
+    key="pageBtn5"
+    onClick={[Function]}
+    value={5}
+  >
+    5
+  </button>
+  <button
+    className="page-button arrow"
+    onClick={[Function]}
+    style={
+      Object {
+        "visibility": "hidden",
+      }
+    }
+  >
+    &gt;&gt;
+  </button>
+</div>
+`;

@@ -40,6 +40,11 @@ describe('dataFunctions', () => {
         const page = 5;
         expect(getElementsByPage(testArray, page)).toEqual(expectedArray);
     });
+    test('getElementsByPage should return empty array if parameter page = 0', () => {
+        const testArray = [];
+        const expectedArray = [];
+        expect(getElementsByPage(testArray, 0)).toEqual(expectedArray);
+    });
     test('getFilteredElements should return correct filtered array', () => {
         const initialData = [...data];
         const expectedArray = [

@@ -1,0 +1,571 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddEntryComponent /> should render correctly with error addingStatus 1`] = `
+<div
+  class="add-entry-component"
+>
+  <button
+    class="add-button"
+  >
+    Добавить
+  </button>
+  <div
+    class="add-entry-component input-form"
+    style="display:none"
+  >
+    <div
+      class="add-entry-component inputs"
+    >
+      <label
+        class="add-entry-component label-input"
+      >
+        Id
+        <input
+          autocomplete="off"
+          class=""
+          name="id"
+          placeholder="Id"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        First Name
+        <input
+          autocomplete="off"
+          class=""
+          name="firstName"
+          placeholder="First Name"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Last Name
+        <input
+          autocomplete="off"
+          class=""
+          name="lastName"
+          placeholder="Last Name"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Email
+        <input
+          autocomplete="off"
+          class=""
+          name="email"
+          placeholder="Email"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Phone
+        <input
+          autocomplete="off"
+          class=""
+          name="phone"
+          placeholder="Phone"
+          type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <p
+      class="input-error-status"
+    >
+      addingStatusText
+    </p>
+    <button
+      class="close-form-button"
+    >
+      Закрыть окно
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<AddEntryComponent /> should render correctly with filled but not validated inputs 1`] = `
+<div
+  class="add-entry-component"
+>
+  <button
+    class="add-button"
+    disabled=""
+  >
+    Добавить
+  </button>
+  <div
+    class="add-entry-component input-form"
+    style="display:flex"
+  >
+    <div
+      class="add-entry-component inputs"
+    >
+      <label
+        class="add-entry-component label-input"
+      >
+        Id
+        <input
+          autocomplete="off"
+          class="error-input"
+          name="id"
+          placeholder="Id"
+          type="text"
+          value="1"
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        First Name
+        <input
+          autocomplete="off"
+          class="error-input"
+          name="firstName"
+          placeholder="First Name"
+          type="text"
+          value="firstName"
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Last Name
+        <input
+          autocomplete="off"
+          class="error-input"
+          name="lastName"
+          placeholder="Last Name"
+          type="text"
+          value="lastName"
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Email
+        <input
+          autocomplete="off"
+          class="error-input"
+          name="email"
+          placeholder="Email"
+          type="text"
+          value="email"
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Phone
+        <input
+          autocomplete="off"
+          class="error-input"
+          name="phone"
+          placeholder="Phone"
+          type="text"
+          value="phone"
+        />
+      </label>
+    </div>
+    <p
+      class="input-fine-status"
+    />
+    <button
+      class="close-form-button"
+    >
+      Закрыть окно
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<AddEntryComponent /> should render correctly with good addingStatus 1`] = `
+<div
+  class="add-entry-component"
+>
+  <button
+    class="add-button"
+  >
+    Добавить
+  </button>
+  <div
+    class="add-entry-component input-form"
+    style="display:none"
+  >
+    <div
+      class="add-entry-component inputs"
+    >
+      <label
+        class="add-entry-component label-input"
+      >
+        Id
+        <input
+          autocomplete="off"
+          class=""
+          name="id"
+          placeholder="Id"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        First Name
+        <input
+          autocomplete="off"
+          class=""
+          name="firstName"
+          placeholder="First Name"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Last Name
+        <input
+          autocomplete="off"
+          class=""
+          name="lastName"
+          placeholder="Last Name"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Email
+        <input
+          autocomplete="off"
+          class=""
+          name="email"
+          placeholder="Email"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Phone
+        <input
+          autocomplete="off"
+          class=""
+          name="phone"
+          placeholder="Phone"
+          type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <p
+      class="input-fine-status"
+    >
+      addingStatusText
+    </p>
+    <button
+      class="close-form-button"
+    >
+      Закрыть окно
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<AddEntryComponent /> should render correctly with initialState 1`] = `
+<div
+  class="add-entry-component"
+>
+  <button
+    class="add-button"
+  >
+    Добавить
+  </button>
+  <div
+    class="add-entry-component input-form"
+    style="display:none"
+  >
+    <div
+      class="add-entry-component inputs"
+    >
+      <label
+        class="add-entry-component label-input"
+      >
+        Id
+        <input
+          autocomplete="off"
+          class=""
+          name="id"
+          placeholder="Id"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        First Name
+        <input
+          autocomplete="off"
+          class=""
+          name="firstName"
+          placeholder="First Name"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Last Name
+        <input
+          autocomplete="off"
+          class=""
+          name="lastName"
+          placeholder="Last Name"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Email
+        <input
+          autocomplete="off"
+          class=""
+          name="email"
+          placeholder="Email"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Phone
+        <input
+          autocomplete="off"
+          class=""
+          name="phone"
+          placeholder="Phone"
+          type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <p
+      class="input-fine-status"
+    />
+    <button
+      class="close-form-button"
+    >
+      Закрыть окно
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<AddEntryComponent /> should render correctly with isAddButtonDisabled and isFormOpen 1`] = `
+<div
+  class="add-entry-component"
+>
+  <button
+    class="add-button"
+    disabled=""
+  >
+    Добавить
+  </button>
+  <div
+    class="add-entry-component input-form"
+    style="display:flex"
+  >
+    <div
+      class="add-entry-component inputs"
+    >
+      <label
+        class="add-entry-component label-input"
+      >
+        Id
+        <input
+          autocomplete="off"
+          class=""
+          name="id"
+          placeholder="Id"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        First Name
+        <input
+          autocomplete="off"
+          class=""
+          name="firstName"
+          placeholder="First Name"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Last Name
+        <input
+          autocomplete="off"
+          class=""
+          name="lastName"
+          placeholder="Last Name"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Email
+        <input
+          autocomplete="off"
+          class=""
+          name="email"
+          placeholder="Email"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Phone
+        <input
+          autocomplete="off"
+          class=""
+          name="phone"
+          placeholder="Phone"
+          type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <p
+      class="input-fine-status"
+    />
+    <button
+      class="close-form-button"
+    >
+      Закрыть окно
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<AddEntryComponent /> should render correctly with isFormOpen 1`] = `
+<div
+  class="add-entry-component"
+>
+  <button
+    class="add-button"
+  >
+    Добавить
+  </button>
+  <div
+    class="add-entry-component input-form"
+    style="display:flex"
+  >
+    <div
+      class="add-entry-component inputs"
+    >
+      <label
+        class="add-entry-component label-input"
+      >
+        Id
+        <input
+          autocomplete="off"
+          class=""
+          name="id"
+          placeholder="Id"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        First Name
+        <input
+          autocomplete="off"
+          class=""
+          name="firstName"
+          placeholder="First Name"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Last Name
+        <input
+          autocomplete="off"
+          class=""
+          name="lastName"
+          placeholder="Last Name"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Email
+        <input
+          autocomplete="off"
+          class=""
+          name="email"
+          placeholder="Email"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        class="add-entry-component label-input"
+      >
+        Phone
+        <input
+          autocomplete="off"
+          class=""
+          name="phone"
+          placeholder="Phone"
+          type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <p
+      class="input-fine-status"
+    />
+    <button
+      class="close-form-button"
+    >
+      Закрыть окно
+    </button>
+  </div>
+</div>
+`;

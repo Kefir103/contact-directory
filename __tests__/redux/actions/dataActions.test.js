@@ -12,13 +12,15 @@ import {
     resetValidInputs,
     changeElementDescription,
     setCurrentElements,
-    setAppElements, setPageCount,
+    setAppElements,
+    setPageCount,
 } from '../../../src/client/redux/actions/dataActions';
 import { data } from '../../../__mocks__/data';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { initialState } from '../../../src/client/redux/initialState';
 import fetchMock from 'fetch-mock-jest';
+import { getAppElements } from '../../../src/client/functions/dataFunctions';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -80,13 +82,15 @@ describe('dataActions', () => {
         };
         store.dispatch(setPageCount(5));
         expect(store.getActions()[0]).toEqual(expectedAction);
-    })
+    });
     test('loadData should load data correctly without error', () => {
         const url =
             'http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D';
         fetchMock.get(url, {
             body: data,
         });
+        const sortingMap = new Map([]);
+        const appElements = getAppElements(data, null, sortingMap);
         const expectedActions = [
             { type: Types.APP_STATUS.CHANGE_LOADING_STATUS, payload: true },
             {
@@ -97,10 +101,14 @@ describe('dataActions', () => {
                 type: Types.DATA.SET_PAGE_COUNT,
                 payload: 1,
             },
+            {
+                type: Types.DATA.SET_APP_ELEMENTS,
+                payload: appElements,
+            },
             { type: Types.APP_STATUS.CHANGE_LOADING_STATUS, payload: false },
             { type: Types.APP_STATUS.CATCH_ERROR, payload: undefined },
         ];
-        return store.dispatch(loadData(url)).then(() => {
+        return store.dispatch(loadData(url, sortingMap)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
         });
     });

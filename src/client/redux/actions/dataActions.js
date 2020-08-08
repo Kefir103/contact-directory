@@ -1,6 +1,6 @@
 import * as Types from './actionTypes';
 import { catchError, changeLoadingStatus } from './appStatusActions';
-import { getPagesCount } from '../../functions/dataFunctions';
+import {getAppElements, getPagesCount} from '../../functions/dataFunctions';
 
 export function setFullData(data) {
     return {
@@ -107,7 +107,7 @@ export function changeInputAddingStatus(statusText, isError) {
     };
 }
 
-export function loadData(url) {
+export function loadData(url, sortingMap) {
     return (dispatch) => {
         dispatch(changeLoadingStatus(true));
         return fetch(url, {
@@ -116,8 +116,10 @@ export function loadData(url) {
             .then((response) => (response.ok ? response.json() : Promise.reject(response)))
             .then((result) => {
                 const pageCount = getPagesCount(result);
+                const newAppElements = getAppElements(result, null, sortingMap);
                 dispatch(setFullData(result));
                 dispatch(setPageCount(pageCount));
+                dispatch(setAppElements(newAppElements));
                 dispatch(changeLoadingStatus(false));
                 dispatch(catchError(undefined));
             })

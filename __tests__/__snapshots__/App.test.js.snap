@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should render correctly with error 1`] = `
+<Fragment>
+  <Header />
+  <Connect(SideMenu) />
+  <Error />
+</Fragment>
+`;
+
+exports[`<App /> should render correctly with isLoading 1`] = `
+<Fragment>
+  <Header />
+  <Connect(SideMenu) />
+  <div
+    className="app-container"
+  >
+    <Loader />
+  </div>
+</Fragment>
+`;
+
+exports[`<App /> should render correctly without isLoading and elementInfo 1`] = `
+<Fragment>
+  <Header />
+  <Connect(SideMenu) />
+  <div
+    className="app-container"
+  >
+    <Connect(AddEntryComponent) />
+    <Connect(Table) />
+  </div>
+</Fragment>
+`;
+
+exports[`<App /> should render correctly without isLoading and with elementInfo 1`] = `
+<Fragment>
+  <Header />
+  <Connect(SideMenu) />
+  <div
+    className="app-container"
+  >
+    <Connect(AddEntryComponent) />
+    <Connect(Table) />
+    <Connect(EntryInfo) />
+  </div>
+</Fragment>
+`;

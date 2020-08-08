@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EntryInfo /> should render correctly with full ElementInfo 1`] = `
+<div
+  class="entry-info"
+>
+  <p>
+    Выбран пользователь: 
+    <b>
+      firstName lastName
+    </b>
+  </p>
+  <p>
+    Описание:
+  </p>
+  <textarea
+    id="textarea-info-description"
+  >
+    description
+  </textarea>
+  <p>
+    Адрес проживания: 
+    <b>
+      streetAddress
+    </b>
+  </p>
+  <p>
+    Город: 
+    <b>
+      city
+    </b>
+  </p>
+  <p>
+    Провинция/штат: 
+    <b>
+      state
+    </b>
+  </p>
+  <p>
+    Индекс: 
+    <b>
+      zip
+    </b>
+  </p>
+</div>
+`;
+
+exports[`<EntryInfo /> should render correctly without address in ElementInfo 1`] = `
+<div
+  class="entry-info"
+>
+  <p>
+    Выбран пользователь: 
+    <b>
+      firstName lastName
+    </b>
+  </p>
+  <p>
+    Описание:
+  </p>
+  <textarea
+    id="textarea-info-description"
+  >
+    description
+  </textarea>
+</div>
+`;

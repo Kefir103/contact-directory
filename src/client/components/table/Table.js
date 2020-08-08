@@ -18,7 +18,7 @@ const Table = (props) => {
             currentElements = getElementsByPage(props.appElements, props.currentPage);
         }
         props.actions.setCurrentElements(currentElements);
-    }, [props.fullData, props.appElements, props.currentPage, props.filterText]);
+    }, [props.fullData, props.appElements, props.currentPage]);
 
     const renderFilterEmptyMessage = () => {
         return (
@@ -44,15 +44,7 @@ const Table = (props) => {
         ];
     };
 
-    return (
-        <>
-            {!props.isLoading ? (
-                <>{props.fullData.length ? <>{renderTable()}</> : ''}</>
-            ) : (
-                <Loader />
-            )}
-        </>
-    );
+    return <>{props.fullData.length ? <>{renderTable()}</> : ''}</>;
 };
 
 const mapStateToProps = (state) => {

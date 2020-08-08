@@ -16,6 +16,9 @@ export const getSortedElements = (elements, sortingMap) => {
 };
 
 export const getElementsByPage = (elements, page) => {
+    if (page === 0) {
+        return [];
+    }
     const elementsLengthByPage = page * 50;
     const startElementsLengthByPage = (page - 1) * 50;
     const currentElementsArray = [];

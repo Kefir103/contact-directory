@@ -6,6 +6,7 @@ import Header from './components/Header';
 import AddEntryComponent from './components/entry/AddEntryComponent';
 import EntryInfo from './components/entry/EntryInfo';
 import { Error } from './components/Error';
+import Loader from './components/Loader';
 
 const App = (props) => {
     return (
@@ -14,9 +15,15 @@ const App = (props) => {
             <SideMenu />
             {!props.error ? (
                 <div className={'app-container'}>
-                    <AddEntryComponent />
-                    <Table />
-                    {props.currentElement.elementInfo ? <EntryInfo /> : ''}
+                    {!props.isLoading ? (
+                        [
+                            <AddEntryComponent />,
+                            <Table />,
+                            <>{props.currentElement.elementInfo ? <EntryInfo /> : ''}</>,
+                        ]
+                    ) : (
+                        <Loader />
+                    )}
                 </div>
             ) : (
                 <Error />

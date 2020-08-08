@@ -33,6 +33,9 @@ const FilterContainer = (props) => {
             const pageCount = getPagesCount(newAppElements);
             props.actions.setAppElements(newAppElements);
             props.actions.setPageCount(pageCount);
+            if (props.currentPage === 0) {
+                props.actions.setCurrentPage(1);
+            }
         }
     };
 

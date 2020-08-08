@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TableElement /> should render correctly with selected element 1`] = `
+<div
+  className="table-row selected-row"
+  onClick={[Function]}
+>
+  <div
+    className="table-cell id"
+  >
+    1
+  </div>
+  <div
+    className="table-cell"
+  >
+    firstName
+  </div>
+  <div
+    className="table-cell"
+  >
+    lastName
+  </div>
+  <div
+    className="table-cell"
+  >
+    email
+  </div>
+  <div
+    className="table-cell"
+  >
+    phone
+  </div>
+</div>
+`;
+
+exports[`<TableElement /> should render correctly without currentElement 1`] = `
+<div
+  className="table-row"
+  onClick={[Function]}
+>
+  <div
+    className="table-cell id"
+  >
+    1
+  </div>
+  <div
+    className="table-cell"
+  >
+    firstName
+  </div>
+  <div
+    className="table-cell"
+  >
+    lastName
+  </div>
+  <div
+    className="table-cell"
+  >
+    email
+  </div>
+  <div
+    className="table-cell"
+  >
+    phone
+  </div>
+</div>
+`;

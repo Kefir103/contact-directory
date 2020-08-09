@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { setAppElements, setCurrentElements, setPageCount } from '../../redux/actions/dataActions';
 import Paginator from './Paginator';
 import { getElementsByPage } from '../../functions/dataFunctions';
+import {catchError} from "../../redux/actions/appStatusActions";
 
 const Table = (props) => {
     useEffect(() => {
@@ -29,25 +30,29 @@ const Table = (props) => {
     };
 
     const renderTable = () => {
-        if (props.filterText && !props.appElements.length) {
-            return renderFilterEmptyMessage();
-        }
+        try {
+            if (props.filterText && !props.appElements.length) {
+                return renderFilterEmptyMessage();
+            }
 
-        return [
-            <div className={'table'} key={'table'}>
-                <TablePanel />
-                {props.currentElements.map((element, index) => (
-                    <TableElement
-                        element={element}
-                        elementIndex={index}
-                        key={`tableElement${index}`}
-                    />
-                ))}
-            </div>,
-            <div className={'paginator-container'} key={'paginatorContainer'}>
-                {props.pageCount > 1 ? <Paginator key={'paginator'} /> : ''}
-            </div>,
-        ];
+            return [
+                <div className={'table'} key={'table'}>
+                    <TablePanel />
+                    {props.currentElements.map((element, index) => (
+                        <TableElement
+                            element={element}
+                            elementIndex={index}
+                            key={`tableElement${index}`}
+                        />
+                    ))}
+                </div>,
+                <div className={'paginator-container'} key={'paginatorContainer'}>
+                    {props.pageCount > 1 ? <Paginator key={'paginator'} /> : ''}
+                </div>,
+            ];
+        } catch (error) {
+            props.actions.catchError(error);
+        }
     };
 
     return <>{props.fullData.length ? <>{renderTable()}</> : ''}</>;
@@ -72,6 +77,7 @@ const mapDispatchToProps = (dispatch) => {
                 setAppElements,
                 setPageCount,
                 setCurrentElements,
+                catchError,
             },
             dispatch
         ),

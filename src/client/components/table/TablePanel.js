@@ -4,31 +4,36 @@ import { bindActionCreators } from 'redux';
 import { setSortingMap } from '../../redux/actions/filterActions';
 import {setAppElements, setPageCount} from '../../redux/actions/dataActions';
 import {getAppElements, getPagesCount} from '../../functions/dataFunctions';
+import {catchError} from "../../redux/actions/appStatusActions";
 
 const TablePanel = (props) => {
     const tableButtonClickHandle = (event) => {
         event.preventDefault();
-        const newMap = new Map(props.sortingMap);
+        try {
+            const newMap = new Map(props.sortingMap);
 
-        if (!newMap.has(event.target.value)) {
-            newMap.set(event.target.value, 'asc');
-        } else if (newMap.get(event.target.value) === 'asc') {
-            newMap.set(event.target.value, 'desc');
-        } else if (newMap.get(event.target.value) === 'desc') {
-            newMap.delete(event.target.value);
+            if (!newMap.has(event.target.value)) {
+                newMap.set(event.target.value, 'asc');
+            } else if (newMap.get(event.target.value) === 'asc') {
+                newMap.set(event.target.value, 'desc');
+            } else if (newMap.get(event.target.value) === 'desc') {
+                newMap.delete(event.target.value);
+            }
+            props.actions.setSortingMap(newMap.entries());
+
+            const newArrayOfAppElements = props.filterText
+                ? getAppElements(
+                    props.fullData,
+                    { filterText: props.filterText, filterFields: props.filterFields },
+                    newMap
+                )
+                : getAppElements(props.fullData, null, newMap);
+            const pageCount = getPagesCount(newArrayOfAppElements);
+            props.actions.setAppElements(newArrayOfAppElements);
+            props.actions.setPageCount(pageCount);
+        } catch (error) {
+            props.actions.catchError(error);
         }
-        props.actions.setSortingMap(newMap.entries());
-
-        const newArrayOfAppElements = props.filterText
-            ? getAppElements(
-                  props.fullData,
-                  { filterText: props.filterText, filterFields: props.filterFields },
-                  newMap
-              )
-            : getAppElements(props.fullData, null, newMap);
-        const pageCount = getPagesCount(newArrayOfAppElements);
-        props.actions.setAppElements(newArrayOfAppElements);
-        props.actions.setPageCount(pageCount);
     };
 
     const getArrow = (field) => {
@@ -92,6 +97,7 @@ const mapDispatchToProps = (dispatch) => {
                 setSortingMap,
                 setAppElements,
                 setPageCount,
+                catchError,
             },
             dispatch
         ),

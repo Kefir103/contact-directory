@@ -3,7 +3,6 @@
 exports[`<App /> should render correctly with error 1`] = `
 <Fragment>
   <Header />
-  <Connect(SideMenu) />
   <Error />
 </Fragment>
 `;
@@ -11,9 +10,12 @@ exports[`<App /> should render correctly with error 1`] = `
 exports[`<App /> should render correctly with isLoading 1`] = `
 <Fragment>
   <Header />
-  <Connect(SideMenu) />
+  <Connect(SideMenu)
+    key="sideMenu"
+  />
   <div
     className="app-container"
+    key="appContainer"
   >
     <Loader />
   </div>
@@ -23,9 +25,12 @@ exports[`<App /> should render correctly with isLoading 1`] = `
 exports[`<App /> should render correctly without isLoading and elementInfo 1`] = `
 <Fragment>
   <Header />
-  <Connect(SideMenu) />
+  <Connect(SideMenu)
+    key="sideMenu"
+  />
   <div
     className="app-container"
+    key="appContainer"
   >
     <Connect(AddEntryComponent)
       key="addEntryComponent"
@@ -44,9 +49,12 @@ exports[`<App /> should render correctly without isLoading and elementInfo 1`] =
 exports[`<App /> should render correctly without isLoading and with elementInfo 1`] = `
 <Fragment>
   <Header />
-  <Connect(SideMenu) />
+  <Connect(SideMenu)
+    key="sideMenu"
+  />
   <div
     className="app-container"
+    key="appContainer"
   >
     <Connect(AddEntryComponent)
       key="addEntryComponent"

@@ -10,9 +10,11 @@ import {
     changeInputAddingStatus,
     resetValidInputs,
     setFullData,
-    setAppElements, setPageCount,
+    setAppElements,
+    setPageCount,
 } from '../../redux/actions/dataActions';
-import {getAppElements, getPagesCount} from '../../functions/dataFunctions';
+import { getAppElements, getPagesCount } from '../../functions/dataFunctions';
+import { catchError } from '../../redux/actions/appStatusActions';
 
 const AddEntryComponent = (props) => {
     const areFieldsTrue = (object) => {
@@ -71,24 +73,32 @@ const AddEntryComponent = (props) => {
             props.actions.changeIsInputFormOpen(true);
             props.actions.changeIsAddButtonDisabled(true);
         } else {
-            if (
-                props.fullData.findIndex((element) => element.id === props.inputElement.id) !== -1
-            ) {
-                props.actions.changeInputAddingStatus('Элемент с таким id уже существует!', true);
-            } else {
-                props.actions.changeInputAddingStatus('Пользователь успешно добавлен!', false);
-                const newArrayOfFullData = [props.inputElement, ...props.fullData];
-                const newArrayOfAppElements = getAppElements(
-                    newArrayOfFullData,
-                    props.filter,
-                    props.sortingMap
-                );
-                const pageCount = getPagesCount(newArrayOfAppElements);
-                props.actions.setFullData(newArrayOfFullData);
-                props.actions.setAppElements(newArrayOfAppElements);
-                props.actions.setPageCount(pageCount);
+            try {
+                if (
+                    props.fullData.findIndex((element) => element.id === props.inputElement.id) !==
+                    -1
+                ) {
+                    props.actions.changeInputAddingStatus(
+                        'Элемент с таким id уже существует!',
+                        true
+                    );
+                } else {
+                    props.actions.changeInputAddingStatus('Пользователь успешно добавлен!', false);
+                    const newArrayOfFullData = [props.inputElement, ...props.fullData];
+                    const newArrayOfAppElements = getAppElements(
+                        newArrayOfFullData,
+                        props.filter,
+                        props.sortingMap
+                    );
+                    const pageCount = getPagesCount(newArrayOfAppElements);
+                    props.actions.setFullData(newArrayOfFullData);
+                    props.actions.setAppElements(newArrayOfAppElements);
+                    props.actions.setPageCount(pageCount);
+                }
+                props.actions.changeIsAddButtonDisabled(false);
+            } catch (error) {
+                props.actions.catchError(error);
             }
-            props.actions.changeIsAddButtonDisabled(false);
         }
     };
 
@@ -236,6 +246,7 @@ const mapDispatchToProps = (dispatch) => {
                 changeInputAddingStatus,
                 resetValidInputs,
                 setPageCount,
+                catchError,
             },
             dispatch
         ),

@@ -6,22 +6,27 @@ import { bindActionCreators } from 'redux';
 import { setCurrentPage, setFilterFields, setFilterText } from '../../redux/actions/filterActions';
 import { setAppElements, setPageCount } from '../../redux/actions/dataActions';
 import { getAppElements, getPagesCount } from '../../functions/dataFunctions';
+import {catchError} from "../../redux/actions/appStatusActions";
 
 const FilterContainer = (props) => {
     const handleFilterFormSubmit = (event) => {
         event.preventDefault();
-        if (props.filterText) {
-            const newAppElements = getAppElements(
-                props.fullData,
-                { filterText: props.filterText, filterFields: props.filterFields },
-                props.sortingMap
-            );
-            const pageCount = getPagesCount(newAppElements);
-            props.actions.setAppElements(newAppElements);
-            props.actions.setPageCount(pageCount);
-            if (props.currentPage > pageCount) {
-                props.actions.setCurrentPage(pageCount);
+        try {
+            if (props.filterText) {
+                const newAppElements = getAppElements(
+                    props.fullData,
+                    { filterText: props.filterText, filterFields: props.filterFields },
+                    props.sortingMap
+                );
+                const pageCount = getPagesCount(newAppElements);
+                props.actions.setAppElements(newAppElements);
+                props.actions.setPageCount(pageCount);
+                if (props.currentPage > pageCount) {
+                    props.actions.setCurrentPage(pageCount);
+                }
             }
+        } catch (error) {
+            props.actions.catchError(error);
         }
     };
 
@@ -29,12 +34,16 @@ const FilterContainer = (props) => {
         event.preventDefault();
         props.actions.setFilterText(event.target.value);
         if (!event.target.value) {
-            const newAppElements = getAppElements(props.fullData, null, props.sortingMap);
-            const pageCount = getPagesCount(newAppElements);
-            props.actions.setAppElements(newAppElements);
-            props.actions.setPageCount(pageCount);
-            if (props.currentPage === 0) {
-                props.actions.setCurrentPage(1);
+            try {
+                const newAppElements = getAppElements(props.fullData, null, props.sortingMap);
+                const pageCount = getPagesCount(newAppElements);
+                props.actions.setAppElements(newAppElements);
+                props.actions.setPageCount(pageCount);
+                if (props.currentPage === 0) {
+                    props.actions.setCurrentPage(1);
+                }
+            } catch (error) {
+                props.actions.catchError(error);
             }
         }
     };
@@ -134,6 +143,7 @@ const mapDispatchToProps = (dispatch) => {
                 setAppElements,
                 setPageCount,
                 setCurrentPage,
+                catchError,
             },
             dispatch
         ),

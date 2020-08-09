@@ -12,21 +12,23 @@ const App = (props) => {
     return (
         <>
             <Header />
-            <SideMenu />
             {!props.error ? (
-                <div className={'app-container'}>
-                    {!props.isLoading ? (
-                        [
-                            <AddEntryComponent key={'addEntryComponent'} />,
-                            <Table key={'table'} />,
-                            <div className={'entry-info-container'} key={'entryInfoContainer'}>
-                                {props.currentElement.elementInfo ? <EntryInfo /> : ''}
-                            </div>,
-                        ]
-                    ) : (
-                        <Loader />
-                    )}
-                </div>
+                [
+                    <SideMenu key={'sideMenu'} />,
+                    <div className={'app-container'} key={'appContainer'}>
+                        {!props.isLoading ? (
+                            [
+                                <AddEntryComponent key={'addEntryComponent'} />,
+                                <Table key={'table'} />,
+                                <div className={'entry-info-container'} key={'entryInfoContainer'}>
+                                    {props.currentElement.elementInfo ? <EntryInfo /> : ''}
+                                </div>,
+                            ]
+                        ) : (
+                            <Loader />
+                        )}
+                    </div>,
+                ]
             ) : (
                 <Error />
             )}

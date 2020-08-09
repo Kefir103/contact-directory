@@ -121,10 +121,8 @@ export function loadData(url, sortingMap) {
                 dispatch(setPageCount(pageCount));
                 dispatch(setAppElements(newAppElements));
                 dispatch(changeLoadingStatus(false));
-                dispatch(catchError(undefined));
             })
             .catch((error) => {
-                dispatch(changeLoadingStatus(false));
                 dispatch(catchError(error));
             });
     };

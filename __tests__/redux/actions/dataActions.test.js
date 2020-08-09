@@ -106,7 +106,6 @@ describe('dataActions', () => {
                 payload: appElements,
             },
             { type: Types.APP_STATUS.CHANGE_LOADING_STATUS, payload: false },
-            { type: Types.APP_STATUS.CATCH_ERROR, payload: undefined },
         ];
         return store.dispatch(loadData(url, sortingMap)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
@@ -120,7 +119,6 @@ describe('dataActions', () => {
         });
         const expectedActions = [
             { type: Types.APP_STATUS.CHANGE_LOADING_STATUS, payload: true },
-            { type: Types.APP_STATUS.CHANGE_LOADING_STATUS, payload: false },
             { type: Types.APP_STATUS.CATCH_ERROR, payload: 'error' },
         ];
         return store.dispatch(loadData(url)).then(() => {

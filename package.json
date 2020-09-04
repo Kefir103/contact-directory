@@ -1,10 +1,10 @@
 {
-    "name": "pushkarev-fas",
+    "name": "contact-directory",
     "version": "1.0.0",
-    "description": "Фильтрация и сортировка данных",
+    "description": "Контактный справочник, позволяющий загружать, фильтровать, сортировать и добавлять новые данные в таблицу",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Kefir103/pushkarev-fas.git"
+        "url": "https://github.com/Kefir103/contact-directory.git"
     },
     "license": "ISC",
     "author": "Efim Pushkarev <pushkarevev@yandex.ru>",

@@ -1,14 +1,14 @@
 {
-    "name": "pushkarev-fugr-test",
+    "name": "pushkarev-fas",
     "version": "1.0.0",
-    "description": "Тестовое задание для Future Group",
+    "description": "Фильтрация и сортировка данных",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Kefir103/pushkarev-fugr-test.git"
+        "url": "https://github.com/Kefir103/pushkarev-fas.git"
     },
     "license": "ISC",
     "author": "Efim Pushkarev <pushkarevev@yandex.ru>",
-    "main": "index.jsx",
+    "main": "src/client/index.js",
     "scripts": {
         "build": "npm-run-all styles client:prod",
         "client:dev": "webpack-dev-server --mode development --devtool inline-source-map --open --hot",

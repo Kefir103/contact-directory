@@ -26,7 +26,7 @@ module.exports = {
         port: 3010,
         hot: true,
         open: true,
-        contentBase: path.join(__dirname, 'build'),
+        contentBase: path.join(__dirname, 'public'),
         compress: false,
         historyApiFallback: true,
     },

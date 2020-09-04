@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function Header() {
-    return (<header><h1>Пушкарев Е.В. | Тестовое задание для Junior Frontend Developer</h1></header>)
+    return (<header><h1>Фильтрация и сортировка данных</h1></header>)
 }

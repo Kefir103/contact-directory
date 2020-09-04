@@ -36,7 +36,7 @@ describe('<TableElement />', () => {
             ...initialState,
             data: {
                 ...initialState.data,
-                currentElements: [{ id: 1 }],
+                pageElements: [{ id: 1 }],
                 currentElement: {
                     elementIndex: 0,
                     elementInfo: { id: 1 },

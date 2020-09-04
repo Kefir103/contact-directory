@@ -26,9 +26,9 @@ export function setSelectedElement(elementInfo, elementIndex) {
     };
 }
 
-export function setCurrentElements(elements) {
+export function setPageElements(elements) {
     return {
-        type: Types.DATA.SET_CURRENT_ELEMENTS,
+        type: Types.DATA.SET_PAGE_ELEMENTS,
         payload: elements,
     };
 }
@@ -116,7 +116,7 @@ export function loadData(url, sortingMap) {
             .then((response) => (response.ok ? response.json() : Promise.reject(response)))
             .then((result) => {
                 const pageCount = getPagesCount(result);
-                const newAppElements = getAppElements(result, null, sortingMap);
+                const newAppElements = getAppElements(result, sortingMap);
                 dispatch(setFullData(result));
                 dispatch(setPageCount(pageCount));
                 dispatch(setAppElements(newAppElements));

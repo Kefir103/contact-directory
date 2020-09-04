@@ -110,7 +110,7 @@ describe('dataFunctions', () => {
                 phone: '(253)555-8927',
             },
         ];
-        expect(getAppElements(data, filter, sortingMap)).toEqual(expectedArray);
+        expect(getAppElements(data, sortingMap, filter)).toEqual(expectedArray);
     });
     test('getAppElements should return correct appElements with sortingMap and without filter', () => {
         const sortingMap = new Map([['lastName', 'asc']]);
@@ -137,7 +137,7 @@ describe('dataFunctions', () => {
                 phone: '(253)555-8927',
             },
         ];
-        expect(getAppElements(data, null, sortingMap)).toEqual(expectedArray);
+        expect(getAppElements(data,  sortingMap)).toEqual(expectedArray);
     });
     test('getAppElements should return initialData without filter and empty sortingMap', () => {
         const sortingMap = new Map([]);
@@ -164,6 +164,6 @@ describe('dataFunctions', () => {
                 phone: '(253)555-8927',
             },
         ];
-        expect(getAppElements(data, null, sortingMap)).toEqual(expectedArray);
+        expect(getAppElements(data, sortingMap)).toEqual(expectedArray);
     });
 });

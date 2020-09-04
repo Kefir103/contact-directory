@@ -10,7 +10,7 @@ const TableElement = (props) => {
 
     const isRowIsCurrentElement = () => {
         return props.selectedElement &&
-            props.selectedElement.id === props.currentElements[props.elementIndex].id
+            props.selectedElement.id === props.pageElements[props.elementIndex].id
             ? ' selected-row'
             : '';
     };
@@ -30,7 +30,7 @@ const TableElement = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        currentElements: state.data.currentElements,
+        pageElements: state.data.pageElements,
         element: ownProps.element,
         elementIndex: ownProps.elementIndex,
         selectedElement: state.data.currentElement.elementInfo,

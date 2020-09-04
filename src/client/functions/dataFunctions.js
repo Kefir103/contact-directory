@@ -32,7 +32,7 @@ export const getPagesCount = (elements) => {
     return Math.ceil(elements.length / 50);
 };
 
-export const getAppElements = (fullData, filter, sortingMap) => {
+export const getAppElements = (fullData, sortingMap, filter) => {
     let currentElements = [...fullData];
     if (filter) {
         currentElements = getFilteredElements(

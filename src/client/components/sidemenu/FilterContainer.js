@@ -5,28 +5,30 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { bindActionCreators } from 'redux';
 import { setCurrentPage, setFilterFields, setFilterText } from '../../redux/actions/filterActions';
 import { setAppElements, setPageCount } from '../../redux/actions/dataActions';
-import { getAppElements, getPagesCount } from '../../functions/dataFunctions';
-import {catchError} from "../../redux/actions/appStatusActions";
+import { getFilteredElements, getPagesCount, getAppElements } from '../../functions/dataFunctions';
+import { catchError } from '../../redux/actions/appStatusActions';
 
 const FilterContainer = (props) => {
     const handleFilterFormSubmit = (event) => {
         event.preventDefault();
         try {
-            if (props.filterText) {
-                const newAppElements = getAppElements(
-                    props.fullData,
-                    { filterText: props.filterText, filterFields: props.filterFields },
-                    props.sortingMap
-                );
-                const pageCount = getPagesCount(newAppElements);
-                props.actions.setAppElements(newAppElements);
-                props.actions.setPageCount(pageCount);
-                if (props.currentPage > pageCount) {
-                    props.actions.setCurrentPage(pageCount);
-                }
-            }
+            filterElements();
         } catch (error) {
             props.actions.catchError(error);
+        }
+    };
+
+    const filterElements = () => {
+        const filteredElements = getFilteredElements(
+            props.appElements,
+            props.filterText,
+            props.filterFields
+        );
+        const pageCount = getPagesCount(filteredElements);
+        props.actions.setAppElements(filteredElements);
+        props.actions.setPageCount(pageCount);
+        if (props.currentPage > pageCount) {
+            props.actions.setCurrentPage(pageCount);
         }
     };
 
@@ -34,17 +36,21 @@ const FilterContainer = (props) => {
         event.preventDefault();
         props.actions.setFilterText(event.target.value);
         if (!event.target.value) {
-            try {
-                const newAppElements = getAppElements(props.fullData, null, props.sortingMap);
-                const pageCount = getPagesCount(newAppElements);
-                props.actions.setAppElements(newAppElements);
-                props.actions.setPageCount(pageCount);
-                if (props.currentPage === 0) {
-                    props.actions.setCurrentPage(1);
-                }
-            } catch (error) {
-                props.actions.catchError(error);
+            resetFilter();
+        }
+    };
+
+    const resetFilter = () => {
+        try {
+            const newAppElements = getAppElements(props.fullData, props.sortingMap);
+            const pageCount = getPagesCount(newAppElements);
+            props.actions.setAppElements(newAppElements);
+            props.actions.setPageCount(pageCount);
+            if (props.currentPage === 0) {
+                props.actions.setCurrentPage(1);
             }
+        } catch (error) {
+            props.actions.catchError(error);
         }
     };
 
@@ -128,9 +134,10 @@ const mapStateToProps = (state) => {
     return {
         filterFields: state.filter.filterFields,
         filterText: state.filter.filterText,
-        fullData: state.data.fullData,
-        sortingMap: state.filter.sortingMap,
         currentPage: state.filter.currentPage,
+        sortingMap: state.filter.sortingMap,
+        appElements: state.data.appElements,
+        fullData: state.data.fullData,
     };
 };
 

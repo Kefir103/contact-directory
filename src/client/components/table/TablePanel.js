@@ -2,38 +2,44 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setSortingMap } from '../../redux/actions/filterActions';
-import {setAppElements, setPageCount} from '../../redux/actions/dataActions';
-import {getAppElements, getPagesCount} from '../../functions/dataFunctions';
-import {catchError} from "../../redux/actions/appStatusActions";
+import { setAppElements, setPageCount } from '../../redux/actions/dataActions';
+import { getAppElements, getPagesCount } from '../../functions/dataFunctions';
+import { catchError } from '../../redux/actions/appStatusActions';
 
 const TablePanel = (props) => {
     const tableButtonClickHandle = (event) => {
         event.preventDefault();
         try {
             const newMap = new Map(props.sortingMap);
-
-            if (!newMap.has(event.target.value)) {
-                newMap.set(event.target.value, 'asc');
-            } else if (newMap.get(event.target.value) === 'asc') {
-                newMap.set(event.target.value, 'desc');
-            } else if (newMap.get(event.target.value) === 'desc') {
-                newMap.delete(event.target.value);
-            }
-            props.actions.setSortingMap(newMap.entries());
-
-            const newArrayOfAppElements = props.filterText
-                ? getAppElements(
-                    props.fullData,
-                    { filterText: props.filterText, filterFields: props.filterFields },
-                    newMap
-                )
-                : getAppElements(props.fullData, null, newMap);
-            const pageCount = getPagesCount(newArrayOfAppElements);
-            props.actions.setAppElements(newArrayOfAppElements);
-            props.actions.setPageCount(pageCount);
+            toggleSortingField(newMap, event.target.value);
+            sortElements(newMap);
         } catch (error) {
             props.actions.catchError(error);
         }
+    };
+
+    const toggleSortingField = (sortingMap, fieldValue) => {
+        if (!sortingMap.has(fieldValue)) {
+            sortingMap.set(fieldValue, 'asc');
+        } else if (sortingMap.get(fieldValue) === 'asc') {
+            sortingMap.set(fieldValue, 'desc');
+        } else if (sortingMap.get(fieldValue) === 'desc') {
+            sortingMap.delete(fieldValue);
+        }
+        props.actions.setSortingMap(sortingMap.entries());
+    };
+
+    const sortElements = (sortingMap) => {
+        const newArrayOfAppElements = props.filter.filterText
+            ? getAppElements(
+                  props.fullData,
+                  sortingMap,
+                  props.filter
+              )
+            : getAppElements(props.fullData, sortingMap);
+        const pageCount = getPagesCount(newArrayOfAppElements);
+        props.actions.setAppElements(newArrayOfAppElements);
+        props.actions.setPageCount(pageCount);
     };
 
     const getArrow = (field) => {
@@ -84,8 +90,10 @@ const TablePanel = (props) => {
 const mapStateToProps = (state) => {
     return {
         sortingMap: state.filter.sortingMap,
-        filterText: state.filter.filterText,
-        filterFields: state.filter.filterFields,
+        filter: {
+            filterText: state.filter.filterText,
+            filterFields: state.filter.filterFields,
+        },
         fullData: state.data.fullData,
     };
 };

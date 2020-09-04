@@ -10,7 +10,7 @@ import {
     changeInputAddingStatus,
     resetValidInputs,
     changeElementDescription,
-    setCurrentElements,
+    setPageElements,
     setAppElements,
     setPageCount,
 } from '../../../src/client/redux/actions/dataActions';
@@ -102,13 +102,13 @@ describe('dataReducer', () => {
             )
         ).toEqual(expectedState);
     });
-    test('setCurrentElements should return correct state', () => {
-        const currentElements = [{ id: 1 }];
+    test('setPageElements should return correct state', () => {
+        const pageElements = [{ id: 1 }];
         const expectedState = {
             ...store.getState().data,
-            currentElements,
+            pageElements: pageElements,
         };
-        expect(dataReducer(store.getState().data, setCurrentElements(currentElements))).toEqual(
+        expect(dataReducer(store.getState().data, setPageElements(pageElements))).toEqual(
             expectedState
         );
     });
@@ -239,7 +239,7 @@ describe('dataReducer', () => {
             ...store.getState().data,
             fullData: [elementInfo],
             appElements: [elementInfo],
-            currentElements: [elementInfo],
+            pageElements: [elementInfo],
             currentElement: {
                 ...store.getState().data.currentElement,
                 elementInfo: elementInfo,
@@ -251,7 +251,7 @@ describe('dataReducer', () => {
                     ...store.getState().data,
                     fullData: [{ description: '' }],
                     appElements: [{ description: '' }],
-                    currentElements: [{ description: '' }],
+                    pageElements: [{ description: '' }],
                 },
                 changeElementDescription('description', 0)
             )

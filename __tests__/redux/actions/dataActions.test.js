@@ -11,7 +11,7 @@ import {
     changeInputAddingStatus,
     resetValidInputs,
     changeElementDescription,
-    setCurrentElements,
+    setPageElements,
     setAppElements,
     setPageCount,
 } from '../../../src/client/redux/actions/dataActions';
@@ -67,12 +67,12 @@ describe('dataActions', () => {
         store.dispatch(setSelectedElement(elementInfo, elementIndex));
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
-    test('setCurrentElements should return currentElements to show', () => {
+    test('setPageElements should return currentElements to show', () => {
         const expectedAction = {
-            type: Types.DATA.SET_CURRENT_ELEMENTS,
+            type: Types.DATA.SET_PAGE_ELEMENTS,
             payload: [{ id: 1 }],
         };
-        store.dispatch(setCurrentElements([{ id: 1 }]));
+        store.dispatch(setPageElements([{ id: 1 }]));
         expect(store.getActions()[0]).toEqual(expectedAction);
     });
     test('setPageCount should set pageCount', () => {
@@ -90,7 +90,7 @@ describe('dataActions', () => {
             body: data,
         });
         const sortingMap = new Map([]);
-        const appElements = getAppElements(data, null, sortingMap);
+        const appElements = getAppElements(data, sortingMap);
         const expectedActions = [
             { type: Types.APP_STATUS.CHANGE_LOADING_STATUS, payload: true },
             {

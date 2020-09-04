@@ -4,7 +4,7 @@ export const DATA = {
 
     SET_FULL_DATA: 'data/setFullData',
     SET_SELECTED_ELEMENT: 'data/setSelectedElement',
-    SET_CURRENT_ELEMENTS: 'data/setCurrentElements',
+    SET_PAGE_ELEMENTS: 'data/setPageElements',
     SET_APP_ELEMENTS: 'data/setAppElements',
     SET_PAGE_COUNT: 'data/setPageCount',
 

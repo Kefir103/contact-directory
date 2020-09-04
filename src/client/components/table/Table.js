@@ -2,23 +2,22 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import TablePanel from './TablePanel';
 import TableElement from './TableElement';
-import Loader from '../Loader';
 import { bindActionCreators } from 'redux';
-import { setAppElements, setCurrentElements, setPageCount } from '../../redux/actions/dataActions';
+import { setAppElements, setPageElements, setPageCount } from '../../redux/actions/dataActions';
 import Paginator from './Paginator';
 import { getElementsByPage } from '../../functions/dataFunctions';
-import {catchError} from "../../redux/actions/appStatusActions";
+import { catchError } from '../../redux/actions/appStatusActions';
 
 const Table = (props) => {
     useEffect(() => {
-        let currentElements = [];
+        let pageElements = [];
         if (!props.filterText && !props.appElements.length) {
-            currentElements = getElementsByPage(props.fullData, props.currentPage);
+            pageElements = getElementsByPage(props.fullData, props.currentPage);
             props.actions.setAppElements(props.fullData);
         } else {
-            currentElements = getElementsByPage(props.appElements, props.currentPage);
+            pageElements = getElementsByPage(props.appElements, props.currentPage);
         }
-        props.actions.setCurrentElements(currentElements);
+        props.actions.setPageElements(pageElements);
     }, [props.fullData, props.appElements, props.currentPage]);
 
     const renderFilterEmptyMessage = () => {
@@ -38,7 +37,7 @@ const Table = (props) => {
             return [
                 <div className={'table'} key={'table'}>
                     <TablePanel />
-                    {props.currentElements.map((element, index) => (
+                    {props.pageElements.map((element, index) => (
                         <TableElement
                             element={element}
                             elementIndex={index}
@@ -62,7 +61,7 @@ const mapStateToProps = (state) => {
     return {
         appElements: state.data.appElements,
         fullData: state.data.fullData,
-        currentElements: state.data.currentElements,
+        pageElements: state.data.pageElements,
         isLoading: state.appStatus.isLoading,
         filterText: state.filter.filterText,
         pageCount: state.data.pageCount,
@@ -76,7 +75,7 @@ const mapDispatchToProps = (dispatch) => {
             {
                 setAppElements,
                 setPageCount,
-                setCurrentElements,
+                setPageElements,
                 catchError,
             },
             dispatch

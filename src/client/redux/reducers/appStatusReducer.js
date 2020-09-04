@@ -10,6 +10,7 @@ export function appStatusReducer(state = initialState, action) {
             };
         }
         case Types.APP_STATUS.CATCH_ERROR: {
+            console.error(action.payload);
             return {
                 ...state,
                 error: action.payload,

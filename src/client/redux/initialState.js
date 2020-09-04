@@ -13,7 +13,7 @@ export const initialState = {
         fullData: [],
         pageCount: 1,
         appElements: [],
-        currentElements: [],
+        pageElements: [],
         inputContainer: {
             isAddButtonDisabled: false,
             isFormOpen: false,

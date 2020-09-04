@@ -9,9 +9,9 @@ import {
     removeInputData,
     changeInputAddingStatus,
     resetValidInputs,
-    setFullData,
     setAppElements,
     setPageCount,
+    setFullData,
 } from '../../redux/actions/dataActions';
 import { getAppElements, getPagesCount } from '../../functions/dataFunctions';
 import { catchError } from '../../redux/actions/appStatusActions';
@@ -67,47 +67,47 @@ const AddEntryComponent = (props) => {
         props.actions.changeInputElementField(event.target.name, event.target.value);
     };
 
-    const handleAddButtonClick = () => {
-        const isFormOpen = props.isFormOpen;
-        if (!isFormOpen) {
-            props.actions.changeIsInputFormOpen(true);
-            props.actions.changeIsAddButtonDisabled(true);
-        } else {
-            try {
-                if (
-                    props.fullData.findIndex((element) => element.id === props.inputElement.id) !==
-                    -1
-                ) {
-                    props.actions.changeInputAddingStatus(
-                        'Элемент с таким id уже существует!',
-                        true
-                    );
-                } else {
-                    props.actions.changeInputAddingStatus('Пользователь успешно добавлен!', false);
-                    const newArrayOfFullData = [props.inputElement, ...props.fullData];
-                    const newArrayOfAppElements = getAppElements(
-                        newArrayOfFullData,
-                        props.filter,
-                        props.sortingMap
-                    );
-                    const pageCount = getPagesCount(newArrayOfAppElements);
-                    props.actions.setFullData(newArrayOfFullData);
-                    props.actions.setAppElements(newArrayOfAppElements);
-                    props.actions.setPageCount(pageCount);
-                }
-                props.actions.changeIsAddButtonDisabled(false);
-            } catch (error) {
-                props.actions.catchError(error);
-            }
-        }
-    };
-
     const handleCloseFormButtonClick = () => {
         props.actions.changeIsInputFormOpen(false);
         props.actions.changeIsAddButtonDisabled(false);
         props.actions.removeInputData();
         props.actions.changeInputAddingStatus('', false);
         props.actions.resetValidInputs();
+    };
+
+    const handleAddButtonClick = () => {
+        const isFormOpen = props.isFormOpen;
+        if (!isFormOpen) {
+            props.actions.changeIsInputFormOpen(true);
+            props.actions.changeIsAddButtonDisabled(true);
+        } else {
+            addNewElement();
+        }
+    };
+
+    const addNewElement = () => {
+        try {
+            if (
+                props.fullData.findIndex((element) => element.id === props.inputElement.id) !== -1
+            ) {
+                props.actions.changeInputAddingStatus('Элемент с таким id уже существует!', true);
+            } else {
+                const newArrayOfFullData = [props.inputElement, ...props.fullData];
+                const newArrayOfAppElements = getAppElements(
+                    newArrayOfFullData,
+                    props.sortingMap,
+                    props.filter,
+                );
+                const pageCount = getPagesCount(newArrayOfAppElements);
+                props.actions.setFullData(newArrayOfFullData);
+                props.actions.setAppElements(newArrayOfAppElements);
+                props.actions.setPageCount(pageCount);
+                props.actions.changeInputAddingStatus('Пользователь успешно добавлен!', false);
+            }
+            props.actions.changeIsAddButtonDisabled(false);
+        } catch (error) {
+            props.actions.catchError(error);
+        }
     };
 
     return (

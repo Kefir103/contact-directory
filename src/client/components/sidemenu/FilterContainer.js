@@ -5,7 +5,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { bindActionCreators } from 'redux';
 import { setCurrentPage, setFilterFields, setFilterText } from '../../redux/actions/filterActions';
 import { setAppElements, setPageCount } from '../../redux/actions/dataActions';
-import { getFilteredElements, getPagesCount, getAppElements } from '../../functions/dataFunctions';
+import { getAppElements, getPagesCount } from '../../functions/dataFunctions';
 import { catchError } from '../../redux/actions/appStatusActions';
 
 const FilterContainer = (props) => {
@@ -19,11 +19,10 @@ const FilterContainer = (props) => {
     };
 
     const filterElements = () => {
-        const filteredElements = getFilteredElements(
-            props.appElements,
-            props.filterText,
-            props.filterFields
-        );
+        const filteredElements = getAppElements(props.fullData, props.sortingMap, {
+            filterText: props.filterText,
+            filterFields: props.filterFields,
+        });
         const pageCount = getPagesCount(filteredElements);
         props.actions.setAppElements(filteredElements);
         props.actions.setPageCount(pageCount);
